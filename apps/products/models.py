@@ -17,7 +17,7 @@ class Food(models.Model):
     name = models.CharField(max_length=255)
     quantity = models.FloatField()
     validity = models.DateField()
-    type = models.CharField(
+    typeCategoria = models.CharField(
         max_length=1,
         choices= choices
     )
@@ -41,7 +41,7 @@ class Cleaning(models.Model):
 
 class Request_Food(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
-    food = models.ForeignKey(Food,on_delete=models.CASCADE)
+    food = models.ManyToManyField(Food)
     quantity = models.FloatField()
     status_activate = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
@@ -53,7 +53,7 @@ class Request_Food(models.Model):
 
 class Request_Cleaning(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
-    cleaning = models.ForeignKey(Cleaning,on_delete=models.CASCADE)
+    cleaning = models.ManyToManyField(Cleaning)
     quantity = models.FloatField()
     status_activate = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)

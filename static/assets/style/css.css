@@ -30,3 +30,9 @@ footer{
     background-color: #03B0FD;
     margin-top: 20px;
 }
+
+.center{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
