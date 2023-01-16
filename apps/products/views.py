@@ -88,3 +88,15 @@ class CleaningDeleteView(LoginRequiredMixin, DeleteView):
     def form_valid(self, form):
         messages.success(self.request, "The task was deleted successfully.")
         return super(CleaningDeleteView,self).form_valid(form)
+
+class RequestFoodCreateView(LoginRequiredMixin, CreateView):
+
+    model = Request_Food
+    form_class: RequestFoodForm
+    template_name = 'products/requestefood_form.html'
+    success_url = reverse_lazy("account:dashboard")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        messages.success(self.request, "The task was created successfully.")
+        return super(CleaningCreateView,self).form_valid(form)

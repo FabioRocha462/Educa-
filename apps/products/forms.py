@@ -52,7 +52,6 @@ class RequestFoodForm(ModelForm):
         model = Request_Food
         fields = [
             'food',
-            'quantity',
         ]
 
         widgets = {
@@ -71,7 +70,6 @@ class RequestCleaningForm(ModelForm):
         model = Request_Cleaning
         fields = [
             'cleaning',
-            'quantity',
         ]
 
         widgets = {

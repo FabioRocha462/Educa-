@@ -3,6 +3,7 @@
 {% load static %}
 {% block title %}  Dashboard {% endblock %}
 {% block content %}
+<a href="/products/requestfood/" class="btn btn-primary">Solicitar Alimentos</a>
         <div class="content">
           {% if user.is_authenticated %}
           <h1><span style = "color: #8bc5be;font-size: 80px;">Welcome</span>, {{ user.get_username }}</h1>  
