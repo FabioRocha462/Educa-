@@ -5,7 +5,7 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib import messages
 # Create your views here.
 from . models import Food, Cleaning, Request_Food, Request_Cleaning
-from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm
+from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm,FoodFormUpdate
 
 # views of Food
 
@@ -34,7 +34,7 @@ class FoodUpdateView(LoginRequiredMixin, UpdateView):
     model = Food
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
-    form_class  = FoodForm
+    form_class  = FoodFormUpdate
     success_url = reverse_lazy("products:food_list")
 
 class FoodDeleteView(LoginRequiredMixin, DeleteView):
