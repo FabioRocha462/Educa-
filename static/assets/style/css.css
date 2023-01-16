@@ -18,6 +18,15 @@
      border-radius:8px;
 }
 
+.form-create{
+    background:#03B0FD;
+    max-width: 1000px;
+    min-height: 100vh;
+    padding:2rem;
+    box-shadow: 5px 5px 15px rgba(0,0,0,2);
+    border-radius:8px;
+}
+
 span,a{
     text-decoration: none;
 }
@@ -29,6 +38,7 @@ header{
 footer{
     background-color: #03B0FD;
     margin-top: 20px;
+
 }
 
 .center{

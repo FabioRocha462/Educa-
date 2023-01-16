@@ -68,7 +68,7 @@ class RequestCleaningForm(ModelForm):
 
     class Meta:
 
-        model = Request_Food
+        model = Request_Cleaning
         fields = [
             'cleaning',
             'quantity',
