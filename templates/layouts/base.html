@@ -25,6 +25,13 @@
                   <li class="nav-item">
                     <a style="color:white" class="nav-link" href="/products/listcleaning/">Link</a>
                   </li>
+                  <li class="nav-item">
+                    <a style="color:white" class="nav-link" href="#">
+                      {% if user.is_authenticated %}
+                      {{user.username}}
+                      {% endif %}
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
