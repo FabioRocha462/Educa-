@@ -25,7 +25,7 @@ class FoodListView(LoginRequiredMixin, ListView):
 
     model = Food
     context_object_name = 'food_list'
-    filterset = FoodFilter
+    filterset_class = FoodFilter
     paginate_by = 10
     def get_queryset(self):
         user = self.request.user
@@ -33,8 +33,7 @@ class FoodListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form_filter"] = self.filterset.form
-
+        context["form_filter"] = self.filterset_class.form
         return context
 
 class FoodUpdateView(LoginRequiredMixin, UpdateView):
