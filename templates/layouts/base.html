@@ -11,24 +11,25 @@
   </head>
   <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a style="color:white"class="nav-link" aria-current="page" href="/products/listfood/">Alimenos Teste</a>
-                  </li>
-                  <li class="nav-item">
-                    <a style="color:white" class="nav-link" href="/products/listcleaning/">Link</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+      <nav class="navbar">
+        <div class="logo">Educa-</div>
+        <ul class="nav-links">
+          <input type="checkbox" id="checkbox_toggle" />
+          <label for="checkbox_toggle" class="hamburger"></label>
+          <div class="menu">
+            <li><a href="/">Home</a></li>
+            <li class="services">
+              <a href="/">Log</a>
+              <ul class="dropdown">
+                <li><a href="/account/login/">Login </a></li>
+                <li><a href="/account/register/">Register</a></li>
+              </ul>
+            </li>
+            <li><a href="/">Pricing</a></li>
+            <li><a href="/">Contact</a></li>
+          </div>
+        </ul>
+      </nav>
     </header>
     <a class="svg-black" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -46,7 +47,7 @@
                 <img src="{% static 'assets/images/social-image.png' %}" alt="" width="64" height="64" class="rounded-circle me-2">
               {% endif %}
               <strong>{{ user.get_username }}</strong>
-          
+         
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
               <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -105,13 +106,13 @@
                 register
               </a>
             </li>
-      
+     
           </ul>
         {% endif %}
         <hr>
       </div>
     </div>
-    {% block content %} 
+    {% block content %}
     {% endblock content %}
     <div class="footer-basic">
       <footer>
