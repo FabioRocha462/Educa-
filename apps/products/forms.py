@@ -60,11 +60,11 @@ class RequestFoodForm(ModelForm):
         }
 
 class RequestCleaningForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(RequestCleaningForm, self).__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super(RequestCleaningForm, self).__init__(*args, **kwargs)
             
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'  
+    #     for field_name, field in self.fields.items():
+    #         field.widget.attrs['class'] = 'form-control'  
 
     class Meta:
 
@@ -74,7 +74,7 @@ class RequestCleaningForm(ModelForm):
         ]
 
         widgets = {
-            'cleaning': forms.RadioSelect(attrs={'class': 'form-control', 'type':'radio'}),
+            'cleaning': forms.CheckboxSelectMultiple(attrs={'class': 'form-control', 'type':'checkbox'}),
         }
 
 
