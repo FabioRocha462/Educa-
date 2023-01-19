@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rolepermissions',
     'crispy_forms',
+    'django_filters',
     #my apps
     'apps.account',
     'apps.documents',

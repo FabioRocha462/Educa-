@@ -6,7 +6,7 @@ from django.contrib import messages
 # Create your views here.
 from . models import Food, Cleaning, Request_Food, Request_Cleaning
 from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm,FoodFormUpdate
-
+from . filters import FoodFilter
 # views of Food
 
 class FoodCreateView(LoginRequiredMixin, CreateView):
@@ -25,10 +25,17 @@ class FoodListView(LoginRequiredMixin, ListView):
 
     model = Food
     context_object_name = 'food_list'
+    filterset = FoodFilter
+    paginate_by = 10
     def get_queryset(self):
         user = self.request.user
         return Food.objects.filter(user = user)
-    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form_filter"] = self.filterset.form
+
+        return context
 
 class FoodUpdateView(LoginRequiredMixin, UpdateView):
     model = Food
