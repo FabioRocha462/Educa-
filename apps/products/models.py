@@ -42,7 +42,7 @@ class Cleaning(models.Model):
 class Request_Food(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
     food = models.ManyToManyField(Food)
-    quantity = models.FloatField()
+    quantity = models.FloatField(null=True,blank=True)
     status_activate = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -54,7 +54,7 @@ class Request_Food(models.Model):
 class Request_Cleaning(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
     cleaning = models.ManyToManyField(Cleaning)
-    quantity = models.FloatField()
+    quantity = models.FloatField(null=True,blank=True)
     status_activate = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
