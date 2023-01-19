@@ -1,7 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:300');
+
+
+
+
+/*Nav Edition*/
+.navbar a {
+    text-decoration: none;
+}
+
+
+.navbar li {
+    list-style: none;
+}
+.navbar input[type = checkbox] {
+    list-style: none;
+    display: none;
+}
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;    
+    background-color: #4C489D;
+    color: #ccc;
+}
+   
+.nav-links a {
+    color: #ccc;
+}
+   
+.logo {
+    font-size: 32px;
+}
+
+
+.menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+}
+   
+.menu li:hover {
+    background-color: #7E7BB9;    
+    border-radius: 5px;    
+    transition: 0.3s ease;
+    color: #FFF;
+}
+   
+.menu li {
+    padding: 5px 14px;
+}
+
+
+.services {
+    position: relative;
+}
+   
+.dropdown {
+    background-color: #6C63AC;
+    padding: 1em 0;
+    position: absolute;
+    display:none;
+    border-radius: 8px;
+    margin: 5px;
+}
+   
+.dropdown li + li {    
+    margin-top: 10px;
+}
+   
+.dropdown li {
+    padding: 0.5em 1em;
+    width: 8em;
+    text-align: center;
+}
+
+
+.dropdown li:hover {
+    background-color: #7E7BB9;
+    margin: 2px;
+    color: #FFF;
+}
+
+
+.services:hover .dropdown {
+    display: block;
+    color: #FFF;
+}
+
 
 /*Login Edition*/
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 
 *{
     box-sizing: border-box;
@@ -9,6 +108,7 @@
     padding: 0;
     font-weight: Raleway, sans-serif;
 }
+
 
 .container{
     display: flex;
@@ -19,13 +119,13 @@
 }
 
 
-
 .alert{
     justify-content: center;
     position: flex;
     z-index: 3;
     max-width: 300px;
 }
+
 
 .screen{
     background: linear-gradient(20deg, #5D54A4, #7C78B8);
@@ -37,12 +137,14 @@
     margin: 20px;
 }
 
+
 .screen_content{
     z-index: 1;
     position: relative;
     height: 100%;
     border-radius: 10px;
 }
+
 
 .screen_background{
     position: absolute;
@@ -55,11 +157,13 @@
     clip-path: inset(0 0 0);
 }
 
+
 .screen_background_shape{
     transform: rotate(45deg);
     position: absolute;
-    
+   
 }
+
 
 .screen_background_shape1{
     height: 520px;
@@ -70,6 +174,7 @@
     border-radius: 0 72px 0 0;
 }
 
+
 .screen_background_shape2{
     height: 220px;
     width: 220px;
@@ -79,6 +184,7 @@
     border-radius: 32px;
 }
 
+
 .screen_background_shape3{
     height: 540px;
     width: 190px;
@@ -87,6 +193,7 @@
     right: 0;
     border-radius: 32px;
 }
+
 
 .screen_background_shape4{
     height: 400px;
@@ -103,11 +210,13 @@
     padding-top: 156px;
 }
 
+
 .login_field{
     z-index: 3;
     padding: 20px 0px;
     position: relative;
 }
+
 
 .login_icon{
     z-index: 3;
@@ -115,6 +224,7 @@
     top: 30px;
     color: #7875B5;
 }
+
 
 .login_input{
     z-index: 2;
@@ -129,12 +239,14 @@
     transition: .2s;
 }
 
+
 .login_input:active,
 .login_input:focus,
 .login_input:hover{
     outline: none;
     border-bottom-color: #6A679E;
 }
+
 
 .login_submit{
     z-index: 2;
@@ -156,6 +268,7 @@
     transition: .2s;
 }
 
+
 .login_submit:active,
 .login_submit:focus,
 .login_submit:hover{
@@ -163,11 +276,13 @@
     outline: none;
 }
 
+
 .button_icon{
     font-size: 24px;
     margin-left: auto;
     color: #7875B5;
 }
+
 
 .p{
     z-index: 3;
@@ -176,3 +291,74 @@
     color: black;
     font-weight: 500;
 }
+
+
+body{
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+}
+
+
+/*Footer Editions*/
+
+
+.footer-basic {
+    padding:40px 0;
+    background-color:#4C489D;
+    color:#FFF;
+  }
+ 
+  .footer-basic ul {
+    padding:0;
+    list-style:none;
+    text-align:center;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:0;
+  }
+ 
+  .footer-basic li {
+    padding:0 5px;
+  }
+ 
+  .footer-basic ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+  }
+ 
+  .footer-basic ul a:hover {
+    opacity:1;
+  }
+ 
+  .footer-basic .social {
+    text-align:center;
+    padding-bottom:25px;
+  }
+ 
+  .footer-basic .social > a {
+    font-size:24px;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:1px solid #ccc;
+    margin:0 8px;
+    color:inherit;
+    opacity:0.75;
+  }
+ 
+  .footer-basic .social > a:hover {
+    opacity:0.9;
+  }
+ 
+  .footer-basic .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+    color:#aaa;
+    margin-bottom:0;
+  }
