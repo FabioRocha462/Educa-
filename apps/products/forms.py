@@ -44,18 +44,19 @@ class RequestFoodForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(RequestFoodForm, self).__init__(*args, **kwargs)
             
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'  
+        # for field_name, field in self.fields.items():
+        #     field.widget.attrs['class'] = 'form-control'  
 
     class Meta:
 
         model = Request_Food
         fields = [
             'food',
+            'quantity',
         ]
 
         widgets = {
-            'food': forms.RadioSelect(attrs={'class': 'form-control', 'type':'radio'}),
+            'food': forms.CheckboxSelectMultiple(attrs={'class': 'form-control', 'type':'checkbox'}),
         }
 
 class RequestCleaningForm(ModelForm):
