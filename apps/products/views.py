@@ -95,7 +95,7 @@ class RequestFoodCreateView(LoginRequiredMixin, CreateView):
     form_class = RequestFoodForm
     # fields = ['food','quantity']
     template_name = 'products/requestfood_form.html'
-    success_url = reverse_lazy("/")
+    success_url = reverse_lazy("dashboard")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
