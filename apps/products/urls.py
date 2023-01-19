@@ -1,6 +1,6 @@
 from django.urls import path
 app_name = "products"
-from . views import FoodCreateView,FoodListView,FoodUpdateView, FoodDeleteView,CleaningCreateView, CleaningListView,CleaningUpdateView,CleaningDeleteView,RequestFoodCreateView
+from . views import FoodCreateView,FoodListView,FoodUpdateView, FoodDeleteView,CleaningCreateView, CleaningListView,CleaningUpdateView,CleaningDeleteView,RequestFoodCreateView, RequestCleaningCreateView
 
 urlpatterns = [
     path("createfood/",FoodCreateView.as_view(), name = "food_form"),
@@ -14,5 +14,7 @@ urlpatterns = [
     path("deletecleaning/<uuid:uuid>/",CleaningDeleteView.as_view(), name = "cleaning_delete"),
     #urls request_food
     path("requestfood/",RequestFoodCreateView.as_view(),name="request_food"),
+    #urls request_cleaning
+    path("requestcleaning/",RequestCleaningCreateView.as_view(), name = "request_cleaning"),
 
 ]
