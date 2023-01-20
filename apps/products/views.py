@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
-from django.contrib import messages
+from django.contrib import messages 
+from crum import get_current_user
 # Create your views here.
 from . models import Food, Cleaning, Request_Food, Request_Cleaning
 from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm,FoodFormUpdate
@@ -22,18 +23,19 @@ class FoodCreateView(LoginRequiredMixin, CreateView):
         return super(FoodCreateView,self).form_valid(form)
 
 class FoodListView(LoginRequiredMixin, ListView):
-
     model = Food
     context_object_name = 'food_list'
-    filterset_class = FoodFilter
+    filterset= FoodFilter
     paginate_by = 10
     def get_queryset(self):
-        user = self.request.user
-        return Food.objects.filter(user = user)
+        # queryset  = Food.objects.filter(user=self.request.user)
+        queryset = super().get_queryset().filter(user=self.request.user)
+        self.filterset = self.filterset(self.request.GET, queryset=queryset)
+        return self.filterset.qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form_filter"] = self.filterset_class.form
+        context["form_filter"] = self.filterset.form
         return context
 
 class FoodUpdateView(LoginRequiredMixin, UpdateView):

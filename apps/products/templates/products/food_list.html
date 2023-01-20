@@ -24,8 +24,11 @@
                   <div class="card-body">
                     <div class="row">
                     <div class="form-group col-6">
+                     
                     <label>Nome do Alimento</label>
-                      {{filter}}
+                      {% for obj in form_filter %}
+                      {{obj}}
+                      {% endfor %}
                     </div>
                     <input class= "btn btn-primary"type="submit" value="Buscar"/>
                   </div>
