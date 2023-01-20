@@ -41,24 +41,33 @@ class Cleaning(models.Model):
 
 class Request_Food(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
-    food = models.ManyToManyField(Food)
-    quantity = models.FloatField(null=True,blank=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
     status_activate = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now = True)
+    
 
     def __str__(self):
-        return self.user + " " + str(self.created_at)
+        return self.name
+
+class Food_RequestFood(models.Model):
+    food = models.ForeignKey(Food, on_delete=models.CASCADE, null=True, blank=True)
+    requestfood = models.ForeignKey(Request_Food, on_delete=models.CASCADE, null=True, blank=True)
+    quantity = models.FloatField(null=True, blank=True)
 
 class Request_Cleaning(models.Model):
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
-    cleaning = models.ManyToManyField(Cleaning)
-    quantity = models.FloatField(null=True,blank=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
     status_activate = models.BooleanField(default=False)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now = True)
 
     def __str__(self):
-        return self.user + " " + str(self.created_at)
+        return self.name
+
+class Cleaning_RequestCleaning(models.Model):
+    cleaning = models.ForeignKey(Cleaning, on_delete=models.CASCADE, null=True, blank=True)
+    requestcleaning =  models.ForeignKey(Request_Cleaning, on_delete=models.CASCADE, null=True, blank=True)
+    quantity = models.FloatField(null=True, blank=True)

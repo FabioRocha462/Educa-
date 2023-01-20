@@ -476,3 +476,9 @@ body{
     margin-left: auto;
     color: #7875B5;
 }
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -51,13 +51,9 @@ class RequestFoodForm(ModelForm):
 
         model = Request_Food
         fields = [
-            'food',
-            'quantity',
+            'name',
         ]
 
-        widgets = {
-            'food': forms.CheckboxSelectMultiple(attrs={'class': 'form-control', 'type':'checkbox'}),
-        }
 
 class RequestCleaningForm(ModelForm):
     # def __init__(self, *args, **kwargs):
@@ -70,7 +66,7 @@ class RequestCleaningForm(ModelForm):
 
         model = Request_Cleaning
         fields = [
-            'cleaning',
+            'name',
         ]
 
         widgets = {
