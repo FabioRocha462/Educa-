@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView
 from django.contrib import messages 
+from django.contrib.auth.decorators import login_required
 from crum import get_current_user
 # Create your views here.
-from . models import Food, Cleaning, Request_Food, Request_Cleaning
+from . models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood
 from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm,FoodFormUpdate
 from . filters import FoodFilter
 # views of Food
@@ -120,7 +122,39 @@ class RequestFoodListView(LoginRequiredMixin, ListView):
         return Request_Food.objects.filter(user = user)
     paginate_by = 10
 
+class RequestFoodDetailsView(LoginRequiredMixin, DetailView):
+    
+    model = Request_Food
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    context_object_name = 'requestfood'
+    filterset= FoodFilter
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["foods"] = Food.objects.exclude(quantity = 0)
+        context["list_food_request_table"] = Food_RequestFood.objects.filter(requestfood = self.kwargs.get("uuid"))
+        self.filterset = self.filterset(self.request.GET, queryset=context['foods'])
+        context['foods'] = self.filterset.qs
+        context['form_filter'] = self.filterset.form
+        return context
 
+
+@login_required
+def request_food(request,uuid_request,uuid_food):
+    if request.method == 'GET':
+        quantity = request.GET.get('quantity')
+        request_food = Request_Food.objects.get(uuid = uuid_request)
+        food = Food.objects.get(uuid = uuid_food)
+        print(uuid_food)
+        request_food_table = Food_RequestFood(
+            quantity = quantity,
+            requestfood = request_food,
+            food = food
+        )
+        request_food_table.save()
+
+        return redirect(f"/products/requestfooddetail/{uuid_request}/")
+    return redirect("/")
 class RequestCleaningCreateView(LoginRequiredMixin, CreateView):
 
     model = Request_Cleaning

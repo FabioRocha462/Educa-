@@ -57,7 +57,7 @@
                                 {% for request in object_list %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td><a class="btn btn-success">{{ request.name }}</a></td>
+                                    <td><a href="/products/requestfooddetail/{{request.uuid}}/" class="btn btn-success">{{ request.name }}</a></td>
                                     <td>{{ request.created_at }}</td>
                                     {% if request.statuc_activate %}
                                     <td><a class="btn btn-success"><strong>CONCLUÍDO</strong></a></td>
