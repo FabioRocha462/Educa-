@@ -9,7 +9,7 @@ from crum import get_current_user
 # Create your views here.
 from . models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood
 from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm,FoodFormUpdate
-from . filters import FoodFilter
+from . filters import FoodFilter,CleaningFilter
 # views of Food
 
 class FoodCreateView(LoginRequiredMixin, CreateView):
@@ -76,10 +76,17 @@ class CleaningListView(LoginRequiredMixin, ListView):
 
     model = Cleaning
     context_object_name = 'cleaning_list'
-    def get_queryset(self):
-        user = self.request.user
-        return Cleaning.objects.filter(user = user)
     paginate_by = 10
+    filterset = CleaningFilter
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(user=self.request.user)
+        self.filterset = self.filterset(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form_filter"] = self.filterset.form
+        return context
 
 class CleaningUpdateView(LoginRequiredMixin, UpdateView):
     model = Cleaning
