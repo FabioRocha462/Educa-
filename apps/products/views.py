@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from crum import get_current_user
 # Create your views here.
-from . models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood
+from . models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood,Cleaning_RequestCleaning
 from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm,FoodFormUpdate
 from . filters import FoodFilter,CleaningFilter
 # views of Food
@@ -162,14 +162,56 @@ def request_food(request,uuid_request,uuid_food):
 
         return redirect(f"/products/requestfooddetail/{uuid_request}/")
     return redirect("/")
+
+# Request Cleaning
 class RequestCleaningCreateView(LoginRequiredMixin, CreateView):
 
     model = Request_Cleaning
     form_class = RequestCleaningForm
     template_name = 'products/requestcleaning_form.html'
-    success_url = reverse_lazy("dashboard")
+    success_url = reverse_lazy("products:request_cleaning_list")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         messages.success(self.request, "The task was created successfully.")
-        return super(RequestFoodCreateView,self).form_valid(form)
+        return super(RequestCleaningCreateView,self).form_valid(form)
+
+class RequestCleadingListView(LoginRequiredMixin, ListView):
+
+    model = Request_Cleaning
+    context_object_name = 'requestcleaning'
+    def get_queryset(self):
+        user = self.request.user
+        return Request_Cleaning.objects.filter(user = user)
+    paginate_by = 10
+
+class RequestCleaningDetailView(LoginRequiredMixin, DetailView):
+
+    model = Request_Cleaning
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    context_object_name = 'requestcleaning'
+    filterset= CleaningFilter
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["cleanings"] = Cleaning.objects.exclude(quantity = 0)
+        context["list_cleaning_request_table"] = Cleaning_RequestCleaning.objects.filter(requestcleaning = self.kwargs.get("uuid"))
+        self.filterset = self.filterset(self.request.GET, queryset=context['cleanings'])
+        context['cleanings'] = self.filterset.qs
+        context['form_filter'] = self.filterset.form
+        return context
+def request_cleaning(request,uuid_request,uuid_cleaning):
+    if request.method == 'GET':
+        quantity = request.GET.get('quantity')
+        request_cleaning = Request_Cleaning.objects.get(uuid = uuid_request)
+        cleaning = Cleaning.objects.get(uuid = uuid_cleaning)
+        print(uuid_cleaning)
+        request_cleaning_table = Cleaning_RequestCleaning(
+            quantity = quantity,
+            requestfood = request_cleaning,
+            cleaning = cleaning
+        )
+        request_cleaning_table.save()
+
+        return redirect(f"/products/requestcleaningdetail/{uuid_request}/")
+    return redirect("/")
