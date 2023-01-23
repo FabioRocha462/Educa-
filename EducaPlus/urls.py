@@ -24,5 +24,6 @@ urlpatterns = [
     path("", views.Home.as_view(), name="dashboard"),
     path("account/", include("apps.account.urls", namespace="account")),
     path("products/", include("apps.products.urls", namespace="products")),
+    path("events/", include("apps.events.urls", namespace="events")),
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

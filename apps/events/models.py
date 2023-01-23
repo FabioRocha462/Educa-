@@ -35,7 +35,6 @@ class Food_Event(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
-    name = models.CharField(max_length=255)
     quantity = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now = True)

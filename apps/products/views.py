@@ -208,7 +208,7 @@ def request_cleaning(request,uuid_request,uuid_cleaning):
         print(uuid_cleaning)
         request_cleaning_table = Cleaning_RequestCleaning(
             quantity = quantity,
-            requestfood = request_cleaning,
+            requestcleaning= request_cleaning,
             cleaning = cleaning
         )
         request_cleaning_table.save()
