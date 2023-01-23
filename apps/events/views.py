@@ -37,3 +37,11 @@ class EventsListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["form_filter"] = self.filterset.form
         return context
+
+class EventsUpdateView(LoginRequiredMixin,UpdateView):
+
+    model = Event
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    form_class  = EventForm
+    success_url = reverse_lazy("events:event_list")

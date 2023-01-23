@@ -15,4 +15,4 @@ class EventFilter(FilterSet):
 
     class Meta:
         model = Event
-        fields = ["name"]
+        fields = ["name","school"]
