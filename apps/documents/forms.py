@@ -34,7 +34,7 @@ class OfficialForm(ModelForm):
 
     class Meta:
 
-        model = Memorando
+        model = Official
         fields = [
             'others',
             'receiver',
@@ -57,7 +57,7 @@ class RequerimentsForm(ModelForm):
 
     class Meta:
 
-        model = Memorando
+        model = Requeriment
         fields = [
             'others',
             'receiver',

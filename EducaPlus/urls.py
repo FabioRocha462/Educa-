@@ -25,5 +25,6 @@ urlpatterns = [
     path("account/", include("apps.account.urls", namespace="account")),
     path("products/", include("apps.products.urls", namespace="products")),
     path("events/", include("apps.events.urls", namespace="events")),
+    path("documents/", include("apps.documents.urls",namespace="documents")),
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
