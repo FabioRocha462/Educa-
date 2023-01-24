@@ -20,7 +20,6 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4>Input Text</h4>
           </div>
           <div class="card-body">
             <div class="row">
@@ -61,15 +60,17 @@
               <tr>
                 <th>#</th>
                 <th>Nome</th>
+                <th>Data</th>
                 <th class="col-md-2 center-block">Ações</th>
               </tr>
               {% for event in object_list %}
               <tr>
                 <td>{{ forloop.counter }}</td>
-                <td>{{ event.name }}</td>
+                <td><a href="/events/eventsdetail/{{event.uuid}}/" class="btn btn-success">{{ event.name }}</a></td>
+                <td>{{event.date}}</td>
                 <td class="col-md-2 center-block text-center">
-                  <a href="/events/eventsupdate/{{event.uuid}}" class="btn btn-primary">Editar</a>
-                  <a href="#" class="btn btn-danger">Remover</a>
+                  <a href="/events/eventsupdate/{{event.uuid}}/" class="btn btn-primary">Editar</a>
+                  <a href="/events/eventsdelete/{{event.uuid}}/" class="btn btn-danger">Remover</a>
                 </td>
               </tr>
               {% endfor %}
