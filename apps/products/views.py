@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
-from crum import get_current_user
+# from crum import get_current_user
 # Create your views here.
 from . models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood,Cleaning_RequestCleaning
 from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm,FoodFormUpdate

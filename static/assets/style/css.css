@@ -27,6 +27,9 @@
     padding: 20px;    
     background-color: #4C489D;
     color: #ccc;
+    border-radius: 0px 0px 0px 70px;
+    box-shadow: 0px 0px 24px #5C5696;
+    
 }
    
 .nav-links a {
