@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html '%}
+{% load crispy_forms_tags %}
+{% block title %} Detail Event {% endblock %}
+{% block content %}
+{% for obj in food_event %}
+<a class="btn btn-success">{{obj.food}} {{obj.quantity}}</a>
+
+{% endfor %}
+<form action="" method="get">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-6">
+
+                            <label>Nome do Alimento</label>
+                            {% for obj in form_filter %}
+                            {{obj}}
+                            {% endfor %}
+                        </div>
+                        <input class="btn btn-primary" type="submit" value="Buscar" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+<div class="table-responsive">
+    <table class="table table-bordered table-md">
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th class="col-md-8 center-block">Ações</th>
+        </tr>
+        {% for food in foods %}
+        <tr>
+            <td><a class="btn btn-success">{{ forloop.counter }}</a>
+            <td>
+            <td>{{ food.name }}</td>
+            <td class="col-md-8 center-block text-center">
+                <form action="/events/eventfood/{{event.uuid}}/{{food.uuid}}/" class="row g-3" method="get">
+                    <div class="col-auto">
+                        <input type="number" required class="form-control" name="quantity" placeholder="quantidade">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-3">Confirm</button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<div id="teste"></div>
+{% endblock %}
