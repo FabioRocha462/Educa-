@@ -16,10 +16,10 @@ urlpatterns = [
     path("requestfood/",RequestFoodCreateView.as_view(),name="request_food"),
     path("requestfoodlist/",RequestFoodListView.as_view(),name="request_food_list"),
     path("requestfooddetail/<uuid:uuid>/",RequestFoodDetailsView.as_view(),name="request_food_detail"),
-    path("request_food/<str:uuid_request>/<str:uuid_food>",request_food,name="request_food_table"),
+    path("request_food/<str:uuid_request>/<str:uuid_food>/",request_food,name="request_food_table"),
     #urls request_cleaning
     path("requestcleaning/",RequestCleaningCreateView.as_view(), name = "request_cleaning"),
     path("requestcleaninglist/",RequestCleadingListView.as_view(), name = "request_cleaning_list"),
     path("requestcleaningdetail/<uuid:uuid>/",RequestCleaningDetailView.as_view(), name = "request_cleaning_detail"),
-    path("request_cleaning/<str:uuid_request>/<str:uuid_cleaning>",request_cleaning,name = "request_cleaning_table"),
+    path("request_cleaning/<str:uuid_request>/<str:uuid_cleaning>/",request_cleaning,name = "request_cleaning_table"),
 ]

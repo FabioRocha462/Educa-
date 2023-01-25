@@ -69,13 +69,6 @@ class Test_Views_Products(TestCase):
         request_cleaning.save()
         return request_cleaning
     
-    def create_request_cleaning(self):
-        request_cleaning = Request_Cleaning(
-            name = "testrequest"
-        )
-        request_cleaning.save()
-        return request_cleaning
-    
     
     #test food
     # ----------------------------------------------------------------
