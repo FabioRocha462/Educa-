@@ -133,7 +133,7 @@ class RequestFoodDetailsView(LoginRequiredMixin, DetailView):
     model = Request_Food
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
-    context_object_name = 'requestfood'
+    context_object_name = 'request_food'
     filterset= FoodFilter
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -178,7 +178,7 @@ class RequestCleaningCreateView(LoginRequiredMixin, CreateView):
 class RequestCleadingListView(LoginRequiredMixin, ListView):
 
     model = Request_Cleaning
-    context_object_name = 'requestcleaning'
+    context_object_name = 'request_cleaning_list'
     def get_queryset(self):
         user = self.request.user
         return Request_Cleaning.objects.filter(user = user)
@@ -189,7 +189,7 @@ class RequestCleaningDetailView(LoginRequiredMixin, DetailView):
     model = Request_Cleaning
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
-    context_object_name = 'requestcleaning'
+    context_object_name = 'request_cleaning_detail'
     filterset= CleaningFilter
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
