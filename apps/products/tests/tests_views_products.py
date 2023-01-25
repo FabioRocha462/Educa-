@@ -61,6 +61,13 @@ class Test_Views_Products(TestCase):
         )
         cleaning.save()
         return cleaning
+
+    def create_request_cleaning(self):
+        request_cleaning = Request_Cleaning(
+            name = "testrequest"
+        )
+        request_cleaning.save()
+        return request_cleaning
     
     def create_request_cleaning(self):
         request_cleaning = Request_Cleaning(
@@ -158,78 +165,65 @@ class Test_Views_Products(TestCase):
         cleaning = self.create_cleaning()
         response = self.client.post(reverse_lazy("products:cleaning_delete", kwargs = {"uuid":cleaning.uuid}),follow=True)
         assert response.status_code == 200
-<<<<<<< HEAD
- 
-    def test_requeriment_food_table(self):
-=======
-        
-    #test request_food
+
+ #test request_food
     # ----------------------------------------------------------------
     # ----------------------------------------------------------------
     # ----------------------------------------------------------------
-    
+
     def test_request_food_create_view(self):
-        
+
         response = self.client.get(reverse_lazy("products:request_food_list"),follow=True)
         assert response.status_code == 200
-        
+
     def test_request_food_create_view_post(self):
-        
+
         response = self.client.post(reverse_lazy("products:request_food_list"),{"name":"testefood2", "status_activate":False,'user':self.create_user()}, follow=True)
         assert response.status_code == 200
-        
+
     def test_request_food_list_view(self):
-        
+
         response = self.client.get(reverse_lazy("products:request_food"),follow=True)
         assert response.status_code == 200
-        
+
     def test_request_food_detail_view(self):
-        
+
         request_food = self.create_request_food()
         response = self.client.get(reverse_lazy("products:cleaning_delete", kwargs = {"uuid":request_food.uuid}),follow=True)
         assert response.status_code == 200
-        
-    def test_request_food_table(self):
->>>>>>> a97390c42f6908b771ca0edcb77ca19245f9ebe4
 
+    def test_requeriment_food_table(self):
         Request_food = self.create_request_food()
         food = self.create_food()
         response = self.client.post(reverse_lazy("products:request_food_table",kwargs={"uuid_request":Request_food.uuid,"uuid_food":food.uuid}),{"quantity":10},follow=True)
         assert response.status_code == 200
-<<<<<<< HEAD
-=======
-        
-    
-    #test request_cleaning
-    # ----------------------------------------------------------------
-    # ----------------------------------------------------------------
-    # ----------------------------------------------------------------
-    
+#----------------------------------------------------
+#----------------------------------------------------
+#----------------------------------------------------
+
+#test request_cleaning
     def test_request_cleaning_create_view(self):
-        
+
         response = self.client.get(reverse_lazy("products:request_cleaning_list"),follow=True)
         assert response.status_code == 200
-        
+
     def test_request_cleaning_create_view_post(self):
-        
+
         response = self.client.post(reverse_lazy("products:request_cleaning_list"),{'name':'teste2',"status_activate":False,'user':self.create_user()},follow=True)
         assert response.status_code == 200
-        
+
     def test_request_cleaning_list_view(self):
-        
+
         response = self.client.get(reverse_lazy("products:request_cleaning_list"),follow=True)
         assert response.status_code == 200
-        
+
     def test_request_cleaning_detail_view(self):
-        
+
         request_cleaning = self.create_request_cleaning()
         response = self.client.get(reverse_lazy("products:request_cleaning_detail", kwargs = {"uuid":request_cleaning.uuid}),follow=True)
         assert response.status_code == 200
-        
-    def test_request_cleaning_table(self):
->>>>>>> a97390c42f6908b771ca0edcb77ca19245f9ebe4
 
-
+    def test_requeriment_cleaning_table(self):
         request_cleaning = self.create_request_cleaning()
         cleaning = self.create_cleaning()
         response = self.client.post(reverse_lazy("products:request_cleaning_table",kwargs={"uuid_request":request_cleaning.uuid,"uuid_cleaning":cleaning.uuid}),{"quantity":10},follow=True)
