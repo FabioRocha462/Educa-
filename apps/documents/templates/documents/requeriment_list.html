@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html '%}
 {% load crispy_forms_tags %}
-{% block title %} List Officials {% endblock %}
+{% block title %} List Requeriment {% endblock %}
 {% block content %}
 <!-- <div class="container"> -->
 <section class="section">
@@ -35,26 +35,26 @@
 
   </form>
   <div class="section-body">
-    <h2 class="section-title">Lista de Oficio</h2>
+    <h2 class="section-title">Lista de Requerimentos</h2>
     <p class="section-lead">
-      mais informações sobre os seus Oficio cadastrados:
+      mais informações sobre os seus Requerimentos cadastrados:
     </p>
 
     <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h4>Dados dos Oficio</h4>
+            <h4>Dados dos Requerimentos</h4>
           </div>
 
-          <a style="margin-bottom: 20px;" class="btn btn-primary" href="/documents/officialcreate/">
+          <a style="margin-bottom: 20px;" class="btn btn-primary" href="/documents/requerimentcreate/">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-circle"
               viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
               <path
                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
             </svg>
-            <span> Add Oficio</span></a>
+            <span> Add Requeriment</span></a>
           <div class="table-responsive">
             <table class="table table-bordered table-md">
               <tr>
@@ -64,12 +64,12 @@
                 <th>Número</th>
                 
               </tr>
-              {% for official in object_list %}
+              {% for requeriment in object_list %}
               <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="/documents/officialdetail/{{official.uuid}}/" class="btn btn-success">{{ official.receiver }}</a></td>
-                <td>{{official.created_at}}</td>
-                <td><a class="btn btn-primary" >{{official.number}}</a></td>
+                <td><a href="/documents/requerimentdetail/{{requeriment.uuid}}/" class="btn btn-success">{{ requeriment.receiver }}</a></td>
+                <td>{{requeriment.created_at}}</td>
+                <td><a class="btn btn-primary" >{{requeriment.number}}</a></td>
               </tr>
               {% endfor %}
             </table>s

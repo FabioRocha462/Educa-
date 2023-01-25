@@ -54,6 +54,15 @@ class Test_Views_Products(TestCase):
         cleaning.save()
         return cleaning
 
+    def create_request_food(self):
+
+        request_food = Request_Food(
+            name = "testerequest",
+        )
+
+        request_food.save()
+        return request_food
+
     def test_food_create_view(self):
         response = self.client.get(reverse_lazy("products:food_form"),follow=True)
         assert response.status_code == 200
@@ -128,5 +137,11 @@ class Test_Views_Products(TestCase):
         cleaning = self.create_cleaning()
         response = self.client.post(reverse_lazy("products:cleaning_delete", kwargs = {"uuid":cleaning.uuid}),follow=True)
         assert response.status_code == 200
+ 
+    def test_requeriment_food_table(self):
 
+        Request_food = self.create_request_food()
+        food = self.create_food()
+        response = self.client.post(reverse_lazy("products:request_food_table",kwargs={"uuid_request":Request_food.uuid,"uuid_food":food.uuid}),{"quantity":10},follow=True)
+        assert response.status_code == 200
 

@@ -7,9 +7,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-from . models import Memorando,Official
-from . forms import MemorandoForm,OfficialForm
-from . filters import MemorandoFilter,OfficialFilter
+from . models import Memorando,Official, Requeriment
+from . forms import MemorandoForm,OfficialForm,RequerimentsForm
+from . filters import MemorandoFilter,OfficialFilter,RequirementFilter
 import datetime
 #views memorando
 class MemorandoCreateView(LoginRequiredMixin, CreateView):
@@ -83,3 +83,52 @@ class OfficialListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["form_filter"] = self.filterset.form
         return context
+
+class OfficialDetailView(LoginRequiredMixin, DetailView):
+
+    model = Official
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    context_object_name = 'official'
+
+# views Requirements
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+class RequerimentCreateView(LoginRequiredMixin, CreateView):
+
+    model = Requeriment
+    form_class = RequerimentsForm
+    template_name = "documents/requeriment_form.html"
+    success_url = reverse_lazy("documents:requeriment_list")
+
+    def form_valid(self, form):
+        year = datetime.date.today().year
+        requeriment = Requeriment.objects.filter(created_at__year=year)
+        form.instance.number = len(requeriment) + 1
+        form.instance.user = self.request.user
+        messages.success(self.request, "The task was created successfully.")
+        return super(RequerimentCreateView,self).form_valid(form)
+
+class RequerimentListView(LoginRequiredMixin, ListView):
+
+    model = Requeriment
+    context_object_name = 'requeriment_list'
+    filterset = RequirementFilter
+    paginate_by = 10
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(user=self.request.user)
+        self.filterset = self.filterset(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form_filter"] = self.filterset.form
+        return context
+
+class RequerimentDetailView(LoginRequiredMixin, DetailView):
+
+    model = Requeriment
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    context_object_name = 'requeriment'

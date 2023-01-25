@@ -1,7 +1,7 @@
 from django_filters import FilterSet, ChoiceFilter, CharFilter,DateFilter 
 from django import forms
 
-from . models import Memorando,Official
+from . models import Memorando,Official,Requeriment
 
 class MemorandoFilter(FilterSet):
 
@@ -21,5 +21,15 @@ class OfficialFilter(FilterSet):
 
     class Meta:
         model = Official
+        fields = ["created_at"]
+    
+class RequirementFilter(FilterSet):
+
+    created_at = DateFilter(
+        widget = forms.DateInput(attrs={'class': 'form-control', 'type':'date'})
+    )
+
+    class Meta:
+        model = Requeriment
         fields = ["created_at"]
     
