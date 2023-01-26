@@ -41,7 +41,7 @@
       <td><a class="btn btn-success">{{ forloop.counter }}</a><td>
       <td>{{ Food.name }}</td>
       <td class="col-md-8 center-block text-center">
-        <form action= "/products/request_food/{{requestfood.uuid}}/{{Food.uuid}}" class="row g-3" method="get">
+        <form action= "/products/request_food/{{request_food.uuid}}/{{Food.uuid}}/" class="row g-3" method="get">
           <div class="col-auto">
             <input type="number" required class="form-control" name="quantity" placeholder="quantidade">
           </div>

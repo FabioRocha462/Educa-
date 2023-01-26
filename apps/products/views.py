@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
+from braces.views import GroupRequiredMixin
 # from crum import get_current_user
 # Create your views here.
 from . models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood,Cleaning_RequestCleaning
@@ -12,8 +13,8 @@ from . forms import FoodForm, CleaningForm, RequestFoodForm, RequestCleaningForm
 from . filters import FoodFilter,CleaningFilter
 # views of Food
 
-class FoodCreateView(LoginRequiredMixin, CreateView):
-
+class FoodCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
+    group_required = u"fooddivider"
     model = Food
     form_class = FoodForm
     template_name = 'products/food_form.html'
@@ -24,8 +25,9 @@ class FoodCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(FoodCreateView,self).form_valid(form)
 
-class FoodListView(LoginRequiredMixin, ListView):
+class FoodListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
     model = Food
+    group_required = [u"fooddivider",u"secretary",u"nutricionist"]
     context_object_name = 'food_list'
     filterset= FoodFilter
     paginate_by = 10
@@ -39,14 +41,16 @@ class FoodListView(LoginRequiredMixin, ListView):
         context["form_filter"] = self.filterset.form
         return context
 
-class FoodUpdateView(LoginRequiredMixin, UpdateView):
+class FoodUpdateView(GroupRequiredMixin,LoginRequiredMixin, UpdateView):
+    group_required = u"fooddivider"
     model = Food
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
     form_class  = FoodFormUpdate
     success_url = reverse_lazy("products:food_list")
 
-class FoodDeleteView(LoginRequiredMixin, DeleteView):
+class FoodDeleteView(GroupRequiredMixin,LoginRequiredMixin, DeleteView):
+    group_required = u"fooddivider"
     model = Food
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -59,8 +63,8 @@ class FoodDeleteView(LoginRequiredMixin, DeleteView):
 
 #views of cleaning
 
-class CleaningCreateView(LoginRequiredMixin, CreateView):
-
+class CleaningCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
+    group_required = u"fooddivider"
     model = Cleaning
     form_class = CleaningForm
     template_name = 'products/cleaning_form.html'
@@ -71,8 +75,8 @@ class CleaningCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(CleaningCreateView,self).form_valid(form)
 
-class CleaningListView(LoginRequiredMixin, ListView):
-
+class CleaningListView(GroupRequiredMixin, LoginRequiredMixin, ListView):
+    group_required = [u"fooddivider",u"secretary",u"nutricionist"]
     model = Cleaning
     context_object_name = 'cleaning_list'
     paginate_by = 10
@@ -87,14 +91,16 @@ class CleaningListView(LoginRequiredMixin, ListView):
         context["form_filter"] = self.filterset.form
         return context
 
-class CleaningUpdateView(LoginRequiredMixin, UpdateView):
+class CleaningUpdateView(GroupRequiredMixin,LoginRequiredMixin, UpdateView):
+    group_required = u'fooddivider'
     model = Cleaning
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
     form_class  = CleaningForm
     success_url = reverse_lazy("products:cleaning_list")
 
-class CleaningDeleteView(LoginRequiredMixin, DeleteView):
+class CleaningDeleteView(GroupRequiredMixin,LoginRequiredMixin, DeleteView):
+    group_required = u"fooddivider"
     model = Cleaning
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -106,8 +112,8 @@ class CleaningDeleteView(LoginRequiredMixin, DeleteView):
         return super(CleaningDeleteView,self).form_valid(form)
 
 #Request Food
-class RequestFoodCreateView(LoginRequiredMixin, CreateView):
-
+class RequestFoodCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
+    group_required = u"asg"
     model = Request_Food
     form_class = RequestFoodForm
     # fields = ['food','quantity']
@@ -119,8 +125,8 @@ class RequestFoodCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(RequestFoodCreateView,self).form_valid(form)
 
-class RequestFoodListView(LoginRequiredMixin, ListView):
-
+class RequestFoodListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
+    group_required = u"asg"
     model = Request_Food
     context_object_name = 'requestfoods'
     def get_queryset(self):
@@ -128,8 +134,8 @@ class RequestFoodListView(LoginRequiredMixin, ListView):
         return Request_Food.objects.filter(user = user)
     paginate_by = 10
 
-class RequestFoodDetailsView(LoginRequiredMixin, DetailView):
-    
+class RequestFoodDetailsView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+    group_required = u"asg"
     model = Request_Food
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -163,8 +169,8 @@ def request_food(request,uuid_request,uuid_food):
     return redirect("/")
 
 # Request Cleaning
-class RequestCleaningCreateView(LoginRequiredMixin, CreateView):
-
+class RequestCleaningCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
+    group_required = u"asg"
     model = Request_Cleaning
     form_class = RequestCleaningForm
     template_name = 'products/requestcleaning_form.html'
@@ -175,8 +181,8 @@ class RequestCleaningCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(RequestCleaningCreateView,self).form_valid(form)
 
-class RequestCleadingListView(LoginRequiredMixin, ListView):
-
+class RequestCleadingListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
+    group_required = u"asg"
     model = Request_Cleaning
     context_object_name = 'request_cleaning_list'
     def get_queryset(self):
@@ -184,8 +190,8 @@ class RequestCleadingListView(LoginRequiredMixin, ListView):
         return Request_Cleaning.objects.filter(user = user)
     paginate_by = 10
 
-class RequestCleaningDetailView(LoginRequiredMixin, DetailView):
-
+class RequestCleaningDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+    group_required = u"asg"
     model = Request_Cleaning
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'

@@ -5,14 +5,17 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
+from braces.views import GroupRequiredMixin
 # Create your views here.
 from . models import Event, Food_Event
 from . forms import EventForm
 from . filters import EventFilter
 from apps.products.models import Food
 from apps.products.filters import FoodFilter
-class EventsCreateView(LoginRequiredMixin,CreateView):
 
+
+class EventsCreateView(GroupRequiredMixin,LoginRequiredMixin,CreateView):
+    group_required = [u"secretary", u"coordinator",u"nutricionist"]
     model = Event
     form_class = EventForm
     template_name = 'events/event_form.html'
@@ -23,8 +26,8 @@ class EventsCreateView(LoginRequiredMixin,CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(EventsCreateView,self).form_valid(form)
 
-class EventsListView(LoginRequiredMixin, ListView):
-
+class EventsListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
+    group_required = [u"secretary", u"coordinator",u"nutricionist",u"fooddivider"]
     model = Event
     context_object_name = 'event_list'
     filterset= EventFilter
@@ -39,8 +42,8 @@ class EventsListView(LoginRequiredMixin, ListView):
         context["form_filter"] = self.filterset.form
         return context
 
-class EventsUpdateView(LoginRequiredMixin,UpdateView):
-
+class EventsUpdateView(GroupRequiredMixin,LoginRequiredMixin,UpdateView):
+    group_required = [u"secretary", u"coordinator", u"nutricionist"]
     model = Event
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -48,8 +51,8 @@ class EventsUpdateView(LoginRequiredMixin,UpdateView):
     success_url = reverse_lazy("events:event_list")
 
 
-class EventsDeleteView(LoginRequiredMixin,DeleteView):
-
+class EventsDeleteView(GroupRequiredMixin,LoginRequiredMixin,DeleteView):
+    group_required = [u"secretary", u"coordinator", u"nutricionist"]
     model = Event
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -60,8 +63,8 @@ class EventsDeleteView(LoginRequiredMixin,DeleteView):
         messages.success(self.request, "The task was deleted successfully.")
         return super(EventsDeleteView,self).form_valid(form)
 
-class EventsDetailView(LoginRequiredMixin,DetailView):
-
+class EventsDetailView(GroupRequiredMixin,LoginRequiredMixin,DetailView):
+    group_required = [u"Secretary", u"Coordinator",u"Nutricionist",u"fooddivider"]
     model = Event
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
