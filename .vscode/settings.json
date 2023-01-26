@@ -1,6 +1,6 @@
 {
     "python.testing.pytestArgs": [
-        "apps"
+        "EducaPlus"
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,

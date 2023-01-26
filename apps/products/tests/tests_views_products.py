@@ -68,12 +68,6 @@ class Test_Views_Products(TestCase):
         )
         request_cleaning.save()
         return request_cleaning
-    
-    
-    #test food
-    # ----------------------------------------------------------------
-    # ----------------------------------------------------------------
-    # ----------------------------------------------------------------
 
     def create_request_food(self):
 
@@ -84,6 +78,11 @@ class Test_Views_Products(TestCase):
         request_food.save()
         return request_food
 
+    #test food
+    # ----------------------------------------------------------------
+    # ----------------------------------------------------------------
+    # ----------------------------------------------------------------
+    
     def test_food_create_view(self):
         response = self.client.get(reverse_lazy("products:food_form"),follow=True)
         assert response.status_code == 200
