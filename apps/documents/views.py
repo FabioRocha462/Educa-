@@ -5,15 +5,15 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
-
+from braces.views import GroupRequiredMixin
 # Create your views here.
 from . models import Memorando,Official, Requeriment
 from . forms import MemorandoForm,OfficialForm,RequerimentsForm
 from . filters import MemorandoFilter,OfficialFilter,RequirementFilter
 import datetime
 #views memorando
-class MemorandoCreateView(LoginRequiredMixin, CreateView):
-
+class MemorandoCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Memorando
     form_class = MemorandoForm
     template_name = "documents/memorando_form.html"
@@ -27,8 +27,8 @@ class MemorandoCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(MemorandoCreateView,self).form_valid(form)
 
-class MemorandoListView(LoginRequiredMixin, ListView):
-
+class MemorandoListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Memorando
     context_object_name = 'memorando_list'
     filterset= MemorandoFilter
@@ -43,8 +43,8 @@ class MemorandoListView(LoginRequiredMixin, ListView):
         context["form_filter"] = self.filterset.form
         return context
 
-class MemorandoDetailView(LoginRequiredMixin, DetailView):
-
+class MemorandoDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Memorando
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -53,8 +53,8 @@ class MemorandoDetailView(LoginRequiredMixin, DetailView):
 
 # views Official
 
-class OfficialCreateView(LoginRequiredMixin, CreateView):
-
+class OfficialCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Official
     form_class = OfficialForm
     template_name = "documents/official_form.html"
@@ -68,8 +68,8 @@ class OfficialCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(OfficialCreateView,self).form_valid(form)
 
-class OfficialListView(LoginRequiredMixin, ListView):
-
+class OfficialListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Official
     context_object_name = 'official_list'
     filterset = OfficialFilter
@@ -84,8 +84,8 @@ class OfficialListView(LoginRequiredMixin, ListView):
         context["form_filter"] = self.filterset.form
         return context
 
-class OfficialDetailView(LoginRequiredMixin, DetailView):
-
+class OfficialDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Official
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -95,8 +95,8 @@ class OfficialDetailView(LoginRequiredMixin, DetailView):
 #----------------------------------------------------------------
 #----------------------------------------------------------------
 #----------------------------------------------------------------
-class RequerimentCreateView(LoginRequiredMixin, CreateView):
-
+class RequerimentCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider",u"asg"]
     model = Requeriment
     form_class = RequerimentsForm
     template_name = "documents/requeriment_form.html"
@@ -110,8 +110,8 @@ class RequerimentCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "The task was created successfully.")
         return super(RequerimentCreateView,self).form_valid(form)
 
-class RequerimentListView(LoginRequiredMixin, ListView):
-
+class RequerimentListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider",u"asg"]
     model = Requeriment
     context_object_name = 'requeriment_list'
     filterset = RequirementFilter
@@ -126,8 +126,8 @@ class RequerimentListView(LoginRequiredMixin, ListView):
         context["form_filter"] = self.filterset.form
         return context
 
-class RequerimentDetailView(LoginRequiredMixin, DetailView):
-
+class RequerimentDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider",u"asg"]
     model = Requeriment
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
