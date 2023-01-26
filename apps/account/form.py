@@ -11,6 +11,7 @@ class RegisterForm(UserCreationForm):
             "email",
             "cpf",
             "image",
+            "typeUser",
             "password1",
             "password2"
         ]
