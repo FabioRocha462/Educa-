@@ -73,8 +73,7 @@ class Tests_Models_Products(TestCase):
         
         food = self.create_food()
         self.assertEqual(food.name, str(food))
-        
-        
+         
     def test_model_cleaning(self):
         
         cleaning = self.create_cleaning()
