@@ -24,6 +24,7 @@ class Test_Views_Products(TestCase):
         email = 'teste@example.com',
         cpf = '123.456.789-00',
         password='t1234567.',
+        typeUser = 'asg',
         )
         user.save()
         return user
@@ -39,7 +40,6 @@ class Test_Views_Products(TestCase):
             quantity = 40,
             validity = datetime.date.today(),
             typeCategoria = 1,
-            user = self.create_user()
         )
         food.save()
         return food
@@ -86,7 +86,7 @@ class Test_Views_Products(TestCase):
     def test_food_create_view(self):
         response = self.client.get(reverse_lazy("products:food_form"),follow=True)
         assert response.status_code == 200
-
+        
     def test_food_create_view_post(self):
         response = self.client.post(reverse_lazy("products:food_form"),{"name":"testefood2", "quantity":300,"validity":datetime.date.today(),'typeCategoria':1, 'user':self.create_user()},follow=True)
         assert response.status_code == 200
