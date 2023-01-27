@@ -11,7 +11,14 @@ from . models import Memorando,Official, Requeriment
 from . forms import MemorandoForm,OfficialForm,RequerimentsForm
 from . filters import MemorandoFilter,OfficialFilter,RequirementFilter
 import datetime
+
+
 #views memorando
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+
+
 class MemorandoCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
     group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Memorando
@@ -52,6 +59,9 @@ class MemorandoDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
    
 
 # views Official
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+#----------------------------------------------------------------
 
 class OfficialCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
     group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
