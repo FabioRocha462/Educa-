@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test import Client, TestCase
-from apps.products.models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood, Cleaning_RequestCleaning
-from django.urls import reverse_lazy, reverse
+from apps.products.models import Food
+from django.urls import reverse_lazy
 # from django.contrib.auth.models import User
 from apps.account.models import User
 from apps.products.models import Food
