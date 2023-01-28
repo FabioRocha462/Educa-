@@ -15,28 +15,50 @@
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo">Educa+</div>
+      <div class="logo">EducaPlus</div>
       <ul class="nav-links">
         <input type="checkbox" id="checkbox_toggle" />
         <label for="checkbox_toggle" class="hamburger"></label>
         <div class="menu">
           <li><a href="/"><i class="fa-solid fa-house"></i>&nbsp Home</a></li>
+          {% if user.is_authenticated == False %}
           <li class="services">
-            <a href="/"><i class="fa-solid fa-person-walking-arrow-right"></i>&nbsp Log</a>
+            <a href="/"><i class="fa-solid fa-person -walking-arrow-right"></i>&nbsp Log</a>
             <ul class="dropdown">
               <li><a href="/account/login/"><i class="fa-solid fa-right-to-bracket"></i>&nbsp Login </a></li>
               <li><a href="/account/register/"><i class="fa-regular fa-id-card"></i>&nbsp Register</a></li>
             </ul>
           </li>
+          {% endif %}
           <li><a href="/"><i class="fa-solid fa-users-line"></i>&nbsp About</a></li>
           <li><a href="/"><i class="fa-solid fa-user-plus"></i>&nbsp Contact</a></li>
+          {% if user.is_authenticated %}
+          <li class="services">
+            {% if user.image %}
+            <img src="{{user.image.url}}" alt="" width="64" height="64" class="rounded-circle me-2">
+            <ul class="dropdown">
+              <li><a class="dropdown-item" href="/account/update/{{ user.id}}">Settings</a></li>
+              <li><a class="dropdown-item" href="/account/details/{{user.id}}">Profile</a></li>
+              <li><a class="dropdown-item" href="/account/logout/">Sair</a></li>
+            </ul>
+            {% else %}
+            <img src="{% static 'assets/images/social-image.png' %}" alt="" width="64" height="64"
+              class="rounded-circle me-2">
+            <ul class="dropdown">
+              <li><a class="dropdown-item" href="/account/update/{{ user.id}}">Settings</a></li>
+              <li><a class="dropdown-item" href="/account/details/{{user.id}}">Profile</a></li>
+              <li><a class="dropdown-item" href="/account/logout/">Sair</a></li>
+            </ul>
+            {% endif %}
+          </li>
+          {% endif %}
         </div>
       </ul>
     </nav>
   </header>
 
 
-  <a class="svg-black" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+  <!-- <a class="svg-black" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
     aria-controls="offcanvasExample">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list"
       viewBox="0 0 16 16">
@@ -120,7 +142,7 @@
       <hr>
 
     </div>
-  </div>
+  </div> -->
   {% block content %}
   {% endblock content %}
   <div class="footer-basic">
@@ -145,7 +167,7 @@
         <li class="list-inline-item"><a href="#">Terms</a></li>
         <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
       </ul>
-      <p class="copyright">Todos os direitos reservados, Educa- &copy 2023</p>
+      <p class="copyright">Todos os direitos reservados, EducaPlus &copy 2023</p>
     </footer>
   </div>
 </body>

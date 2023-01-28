@@ -2,16 +2,16 @@
 {% load static %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
+{% if user.is_authenticated %}
 <div class="container">
-  <div class="content">
-    {% if user.is_authenticated %}
-    <h1 tyle="color:black;"><span style="color: #8bc5be;font-size: 80px;">Welcome</span>, {{ user.get_username }}</h1>
-    <h1>{{user.typeUser}}</h1>
-    {% endif %}
+  <div class="row align-items-center">
+    <div class="col">
+      <h1><span style="color: #8bc5be;font-size: 80px;">Welcome</span>, {{ user.username }}</h1>
+    </div>
+    <div class="col">
+      <img src="{%  static 'assets/images/index.png' %}" height="500" width="500">
+    </div>
   </div>
 </div>
-
-
-
-
+{% endif %}
 {% endblock %}
