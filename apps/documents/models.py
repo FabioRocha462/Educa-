@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-from apps.account.models import User
+from apps.users.models import User
 # Create your models here.
 
 class Memorando(models.Model):

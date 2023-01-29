@@ -56,9 +56,7 @@
       </ul>
     </nav>
   </header>
-
-
-  <!-- <a class="svg-black" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+  <a class="svg-black" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
     aria-controls="offcanvasExample">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list"
       viewBox="0 0 16 16">
@@ -69,80 +67,113 @@
   <div class="offcanvas offcanvas-start navbar-dark bg-dark" tabindex="-1" id="offcanvasExample"
     aria-labelledby="offcanvasExampleLabel">
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+      <h1 class="nav-link text-white">Services</h1>
+      <hr style="color:white;">
       {% if user.is_authenticated %}
-  
-      <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          {% if user.image %}
-          <img src="{{user.image.url}}" alt="" width="64" height="64" class="rounded-circle me-2">
-          {% else %}
-          <img src="{% static 'assets/image/social-image.png' %}" alt="" width="64" height="64"
-            class="rounded-circle me-2">
-          {% endif %}
-          <strong >{{ user.get_username }}</strong>
-
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-          <li><a class="dropdown-item" href="/account/update/{{ user.id}}">Settings</a></li>
-          <li><a class="dropdown-item" href="/account/details/{{user.id}}">Profile</a></li>
-          <li><a class="dropdown-item" href="/account/logout">Sair</a></li>
-        </ul>
-      </div>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="/" class="nav-link active" aria-current="page">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-house-door"
-              viewBox="0 0 16 16">
-              <path
-                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
-            </svg>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="/dashboard/dashboardview/" class="nav-link text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-activity"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
-            </svg>
-            Dashboard
-          </a>
-        </li>
-        {% else %}
-        <li>
-          <a href="/account/login" class="nav-link text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-              class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
-              <path fill-rule="evenodd"
-                d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-            </svg>
-            login
-          </a>
-        </li>
-        <li>
-          <a href="register" class="nav-link text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-plus"
-              viewBox="0 0 16 16">
-              <path
-                d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-              <path fill-rule="evenodd"
-                d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
-            </svg>
-            register
-          </a>
-        </li>
-
-      </ul>
+          <p class="nav-link text-white">Grupo: {{ user.typeUser }}</p>
+        {% if user.typeUser %}
+          <ul class="nav nav-pills flex-column mb-auto">
+            {% if user.typeUser == 'secretary' or user.typeUser == 'fooddivider' or user.typeUser == 'nutricionist' or user.typeUser == 'asg' %}
+                <li class="nav-link text-white">
+                  <div class="services">
+                    <a href="" class="nav-link text-white"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
+                        <path
+                          d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5zm0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6z" />
+                      </svg>Alimentos</a>
+                    <ul class="dropdown">
+                    {% if user.typeUser != "asg" and user.typeUser != "nutricionist"  %}
+                        <li><a style="color:white;" class="dropdown-item" href="/products/listfood/">Alimentos</a></li>
+                      {% endif %}
+                      <li><a style="color:white;" class="dropdown-item" href="/products/requestfoodlist/">Pedir Alimentos</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="nav-link text-white">
+                  <div class="services">
+                    <a href="" class="nav-link text-white"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                        fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+                        <path
+                          d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z" />
+                      </svg> Limpeza</a>
+                    <ul class="dropdown">
+                      {% if user.typeUser != "asg" and user.typeUser != "nutricionist"  %}
+                        <li><a style="color:white;" class="dropdown-item" href="/products/listcleaning/">Limpeza</a></li>
+                      {% endif %}
+                      <li><a style="color:white;" class="dropdown-item" href="/products/requestcleaninglist/">Pedir Limpeza</a></li>
+                    </ul>
+                  </div>
+                </li>
+            {% endif %}
+            {% if user.typeUser == "coordinator" or user.typeUser == "secretary" or user.typeUser == "nutricionist" %}
+              <li class="nav-link text-white">
+                <div class="services">
+              <li class="nav-link text-white">
+                <div class="services">
+                  <a href="/events/eventslist/" class="nav-link text-white"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                      fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
+                      <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z" />
+                      <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z" />
+                      <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z" />
+                    </svg> Eventos </a>
+                </div>
+              </li>
+              </li>
+            {% endif %}
+            <li class="nav-link text-white">
+              <div class="services">
+                <a href="" class="nav-link text-white"> <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                    fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                    <path
+                      d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+                    <path
+                      d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                  </svg>Documents</a>
+                <ul class="dropdown">
+                  {% if user.typeUser != "asg"%}
+                  <li><a style="color:white;" class="dropdown-item" href="/documents/memorandolist/">Memorando</a></li>
+                  <li><a style="color:white;" class="dropdown-item" href="/documents/officiallist/">Oficios</a></li>
+                  {% endif %}
+                  <li><a style="color:white;" class="dropdown-item" href="/documents/requerimentlist/">Requirimentos</a></li>
+                </ul>
+              </div>
+            </li>
+            {% if user.typeUser == "secretary" %}
+                  <li class="nav-link text-white">
+                    <div class="services">
+                      <a href="" class="nav-link text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                          <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+                        </svg>
+                        Usuários
+                      </a>
+                    </div>
+                  </li>
+            {% endif %}
+            {% if user.typeUser != "asg" %}
+            <li class="nav-link text-white">
+              <div class="services">
+                <a href="#" class="nav-link text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-activity"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
+                  </svg> Painel</a>
+              </div>
+            </li>
+            {% endif %}
+          </ul>
+      {% else %}
+      <h4 class="nav-link text-white">
+        Você não pertence a nenhum grupo
+      </h4>
       {% endif %}
-      <hr>
+      {% endif %}
 
+      <hr>
     </div>
-  </div> -->
+  </div>
   {% block content %}
   {% endblock content %}
   <div class="footer-basic">

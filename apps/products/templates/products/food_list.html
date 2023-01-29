@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block title %} List Food {% endblock %}
 {% block content %}
-<div class="container">
+<div class="content_container">
   <section class="section">
     <div class="section-header">
 
@@ -21,7 +21,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>Input Text</h4>
+              <h4>Pesquise por um Alimento</h4>
             </div>
             <div class="card-body">
               <div class="row">
@@ -68,7 +68,9 @@
                   <th>Nome</th>
                   <th>Validade</th>
                   <th>Quantidade</th>
+                  {% if user.typeUser == 'asg' %}
                   <th class="col-md-2 center-block">Ações</th>
+                  {% endif %}
                 </tr>
                 {% for Food in object_list %}
                 <tr>
@@ -76,10 +78,12 @@
                   <td>{{ Food.name }}</td>
                   <td>{{ Food.validity }}</td>
                   <td>{{ Food.quantity }}</td>
+                  {% if user.typeUser == 'asg' %}
                   <td class="col-md-2 center-block text-center">
                     <a href="/products/updatefood/{{Food.uuid}}/" class="btn btn-primary">Editar</a>
                     <a href="/products/deletefood/{{Food.uuid}}/" class="btn btn-danger">Remover</a>
                   </td>
+                  {% endif %}
                 </tr>
                 {% endfor %}
               </table>

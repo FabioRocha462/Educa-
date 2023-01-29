@@ -66,17 +66,21 @@
                 <th>#</th>
                 <th>Nome</th>
                 <th>Quantidade</th>
-                <th class="col-md-2 center-block">Ações</th>
+                {% if user.typeUser == 'asg' %}
+                  <th class="col-md-2 center-block">Ações</th>
+                {% endif %}
               </tr>
               {% for cleaning in object_list %}
               <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ cleaning.name }}</td>
                 <td>{{ cleaning.quantity }}</td>
-                <td class="col-md-2 center-block text-center">
-                  <a href="/products/updatecleaning/{{cleaning.uuid}}/" class="btn btn-primary">Editar</a>
-                  <a href="/products/deletecleaning/{{cleaning.uuid}}/" class="btn btn-danger">Remover</a>
-                </td>
+                {% if user.typeUser == 'asg' %}
+                  <td class="col-md-2 center-block text-center">
+                    <a href="/products/updatecleaning/{{cleaning.uuid}}/" class="btn btn-primary">Editar</a>
+                    <a href="/products/deletecleaning/{{cleaning.uuid}}/" class="btn btn-danger">Remover</a>
+                  </td>
+                {% endif %}
               </tr>
               {% endfor %}
             </table>

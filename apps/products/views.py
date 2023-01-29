@@ -32,7 +32,7 @@ class FoodListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
     filterset= FoodFilter
     paginate_by = 10
     def get_queryset(self):
-        queryset = super().get_queryset().filter(user=self.request.user)
+        queryset = super().get_queryset().all().order_by("name")
         self.filterset = self.filterset(self.request.GET, queryset=queryset)
         return self.filterset.qs
 

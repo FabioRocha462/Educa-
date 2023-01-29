@@ -1,7 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse_lazy, reverse
 # from django.contrib.auth.models import User
-from apps.account.models import User
+from apps.users.models import User
 from apps.documents.models import Memorando, Official, Requeriment
 import datetime
 class Test_Views_Products(TestCase):

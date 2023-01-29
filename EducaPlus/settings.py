@@ -41,13 +41,15 @@ INSTALLED_APPS = [
     'rolepermissions',
     'crispy_forms',
     'django_filters',
+
     #my apps
-    'apps.account',
+    'apps.users',
     'apps.documents',
     'apps.events',
     'apps.products',
     'apps.schools',
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
@@ -78,6 +80,14 @@ TEMPLATES = [
         },
     },
 ]
+
+# AUTHENTICATION_BACKENDS = [
+
+    
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]
+
 
 WSGI_APPLICATION = 'EducaPlus.wsgi.application'
 
@@ -138,7 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ROLEPERMISSIONS_MODULE =  "EducaPlus.roles"
 
 #accounts_settings
-AUTH_USER_MODEL = "account.User"
-LOGIN_URL = "account:login"
+AUTH_USER_MODEL = "users.User"
+LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "dashboard"
-LOGOUT_REDIRECT_URL = "account:login"
+LOGOUT_REDIRECT_URL = "users:login"
