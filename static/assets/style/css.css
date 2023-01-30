@@ -480,8 +480,19 @@ body{
     color: #7875B5;
 }
 
+.bigicone{
+   height: 32px;
+   width: 32;
+}
 .center{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.content_container{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.paddin_form{
+    margin-right: 5px;
 }

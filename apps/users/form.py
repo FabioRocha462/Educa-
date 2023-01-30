@@ -9,7 +9,6 @@ class RegisterForm(UserCreationForm):
         fields =[
             "username",
             "email",
-            "cpf",
             "image",
             "typeUser",
             "password1",

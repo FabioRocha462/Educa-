@@ -14,7 +14,6 @@ class User(AbstractUser):
     uuid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField("Email", unique=True)
-    cpf = models.CharField(max_length=14, unique = True)
     image = models.ImageField(upload_to = "account/", null=True, blank=True)
     typeUser = models.CharField(
         max_length = 20,
@@ -25,7 +24,7 @@ class User(AbstractUser):
 
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ["username","cpf"]
+    REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
-        return "{}".format(self.email)
+        return "{}".format(self.username)

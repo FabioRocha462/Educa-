@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse_lazy
 from apps.products.models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood, Cleaning_RequestCleaning
-from apps.account.models import User
+from apps.users.models import User
 from apps.products.models import Food,Cleaning
 import datetime
 
@@ -19,7 +19,6 @@ class Tests_Urls_Products(TestCase):
         user = User.objects.create(
         username='teste', 
         email = 'teste@example.com',
-        cpf = '123.456.789-00',
         password='t1234567.',
         )
         user.save()
