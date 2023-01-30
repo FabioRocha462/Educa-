@@ -1,74 +1,7 @@
-from django.test import Client, TestCase
+from EducaPlus.tests import test_base
 from django.urls import reverse_lazy, reverse
-# from django.contrib.auth.models import User
-from apps.users.models import User
-from apps.documents.models import Memorando, Official, Requeriment
 import datetime
-class Test_Views_Products(TestCase):
-    #test food
-    #----------------------------------------------------------------
-    #----------------------------------------------------------------
-    #----------------------------------------------------------------   
-    def setUp(self) -> None:
-        return super().setUp
-
-    def tearDown(self) -> None:
-        return super().tearDown()
-
-
-
-    def create_user(self):
-        user = User.objects.create(
-        username='teste', 
-        email = 'teste@example.com',
-        password='t1234567.',
-        typeUser = 'asg',
-        )
-        user.save()
-        return user
-
-    def login(self):
-        user_logged = self.cliente.login(email = 'teste@example.com', password = 't1234567.')
-        return user_logged
-
-    def create_memorando(self):
-
-        memorando = Memorando(
-            others = "testefood",
-            number = 4,
-            receiver = "recebido",
-            destiny = '1',
-            description = "Teste de descrição de memorando",
-            user = self.create_user()
-        )
-        memorando.save()
-        return memorando
-    
-    def create_official(self):
-
-        official = Official(
-            others = "testefood",
-            number = 4,
-            receiver = "recebido",
-            destiny = '1',
-            description = "Teste de descrição de official",
-            user = self.create_user()
-        )
-        official.save()
-        return official
-    
-    def create_requirement(self):
-
-        requeriment = Requeriment(
-            others = "testefood",
-            number = 4,
-            receiver = "recebido",
-            destiny = '1',
-            description = "Teste de descrição de requeriment",
-            user = self.create_user()
-        )
-        requeriment.save()
-        return requeriment
+class Test_Urls_Documents(test_base.Base_test_core):
     
     #test URLs documents Memorando
     # ----------------------------------------------------------------
