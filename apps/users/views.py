@@ -9,8 +9,9 @@ from django.contrib import messages
 from django.views import View
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
+from django.views.generic import UpdateView,DetailView
 
-from . form import RegisterForm
+from . form import RegisterForm,UpdateForm
 from . models import User
 # Create your views here.
 class Home(LoginRequiredMixin, TemplateView):
@@ -63,5 +64,24 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return reverse("login")
+
+class DetailPerfil(LoginRequiredMixin,DetailView):
+    model = User
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    context_object_name = 'user'
     
 
+class UpdatePerfil(LoginRequiredMixin,UpdateView):
+    model = User
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    form_class = UpdateForm
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['uuid'] = self.kwargs.get('uuid')
+        return context
+
+
+
+    success_url = reverse_lazy("dashboard")

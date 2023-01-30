@@ -14,3 +14,13 @@ class RegisterForm(UserCreationForm):
             "password1",
             "password2"
         ]
+
+class UpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "email",
+            "image",
+        ]

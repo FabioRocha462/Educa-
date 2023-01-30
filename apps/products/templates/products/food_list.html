@@ -68,7 +68,7 @@
                   <th>Nome</th>
                   <th>Validade</th>
                   <th>Quantidade</th>
-                  {% if user.typeUser == 'asg' %}
+                  {% if user.typeUser == 'food_divider' %}
                   <th class="col-md-2 center-block">Ações</th>
                   {% endif %}
                 </tr>
@@ -78,7 +78,7 @@
                   <td>{{ Food.name }}</td>
                   <td>{{ Food.validity }}</td>
                   <td>{{ Food.quantity }}</td>
-                  {% if user.typeUser == 'asg' %}
+                  {% if user.typeUser == 'food_divider' %}
                   <td class="col-md-2 center-block text-center">
                     <a href="/products/updatefood/{{Food.uuid}}/" class="btn btn-primary">Editar</a>
                     <a href="/products/deletefood/{{Food.uuid}}/" class="btn btn-danger">Remover</a>
