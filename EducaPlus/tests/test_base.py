@@ -1,9 +1,8 @@
 from django.test import Client, TestCase
-from apps.products.models import Food, Cleaning, Request_Food, Request_Cleaning, Food_RequestFood, Cleaning_RequestCleaning
-from django.urls import reverse_lazy, reverse
-# from django.contrib.auth.models import User
+from apps.products.models import Food, Cleaning, Request_Food, Request_Cleaning
 from apps.users.models import User
-from apps.products.models import Food,Cleaning
+from apps.documents.models import Memorando, Official, Requeriment
+from apps.events.models import Event
 import datetime
 class Base_test_core(TestCase):
     
@@ -86,8 +85,65 @@ class Base_test_core(TestCase):
     
     ####################################################
     ##########                                 #########
-    ##########           Core             #########
+    ##########          Core Documents         #########
     ##########                                 #########
     ####################################################
     
+    def create_memorando(self):
+
+        memorando = Memorando(
+            others = "testefood",
+            number = 4,
+            receiver = "recebido",
+            destiny = '1',
+            description = "Teste de descrição de memorando",
+            user = self.create_user(),
+            created_at = datetime.date.today(),
+        )
+        memorando.save()
+        return memorando
     
+    def create_official(self):
+
+        official = Official(
+            others = "testefood",
+            number = 4,
+            receiver = "recebido",
+            destiny = '1',
+            description = "Teste de descrição de official",
+            user = self.create_user(),
+            created_at = datetime.date.today(),
+        )
+        official.save()
+        return official
+    
+    def create_requirement(self):
+
+        requeriment = Requeriment(
+            others = "testefood",
+            number = 4,
+            receiver = "recebido",
+            destiny = '1',
+            description = "Teste de descrição de requeriment",
+            user = self.create_user(),
+            created_at = datetime.date.today(),
+        )
+        requeriment.save()
+        return requeriment
+    
+    
+    ####################################################
+    ##########                                 #########
+    ##########           Core Event            #########
+    ##########                                 #########
+    ####################################################
+    
+    def create_event(self):
+
+        event = Event.objects.create(
+            name = 'eventtest',
+            school = 3,
+            date = datetime.date.today(),
+            user = self.create_user()
+        )
+        return event
