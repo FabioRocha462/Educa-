@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView,LogoutView
 
-from . views import Register,MyLoginView,DetailPerfil,UpdatePerfil
+from . views import Register,MyLoginView,DetailPerfil,UpdatePerfil,AdminUsers,updateTypeUser
 app_name = "users"
 urlpatterns = [
     path('register/', Register.as_view(), name="register"),
@@ -9,4 +9,6 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path("update/<uuid:uuid>/", UpdatePerfil.as_view(), name="update"),
     path("details/<uuid:uuid>/", DetailPerfil.as_view(),name="details"),
+    path("adminusers/",AdminUsers.as_view(),name = "adminusers"),
+    path("typeuser/<str:uuid>/", updateTypeUser, name="usertype"),
 ]

@@ -64,7 +64,7 @@ class EventsDeleteView(GroupRequiredMixin,LoginRequiredMixin,DeleteView):
         return super(EventsDeleteView,self).form_valid(form)
 
 class EventsDetailView(GroupRequiredMixin,LoginRequiredMixin,DetailView):
-    group_required = [u"Secretary", u"Coordinator",u"Nutricionist",u"fooddivider"]
+    group_required = [u"secretary", u"coordinator",u"nutricionist",u"fooddivider"]
     model = Event
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'

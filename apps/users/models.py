@@ -12,7 +12,7 @@ class User(AbstractUser):
     )
 
     uuid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4)
-    username = models.CharField(max_length=50, unique=True)
+    username = models.CharField(max_length=50,unique = True)
     email = models.EmailField("Email", unique=True)
     image = models.ImageField(upload_to = "account/", null=True, blank=True)
     typeUser = models.CharField(
