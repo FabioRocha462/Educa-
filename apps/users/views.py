@@ -14,13 +14,13 @@ from . form import RegisterForm
 from . models import User
 # Create your views here.
 class Home(LoginRequiredMixin, TemplateView):
-    template_name = "account/dashboard.html"
+    template_name = "users/dashboard.html"
 
 
 class Register(View):
     form_class = RegisterForm
     initial = {"key": "value"}
-    template_name = "account/register.html"
+    template_name = "users/register.html"
 
     def get(self, request):
         form = self.form_class(initial=self.initial)

@@ -1,7 +1,7 @@
 from django.db import models
 import uuid
 
-from apps.account.models import User
+from apps.users.models import User
 from apps.products.models import Food
 # Create your models here.
 class Event(models.Model):

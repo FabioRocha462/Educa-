@@ -37,17 +37,29 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'rolepermissions',
     'crispy_forms',
     'django_filters',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+
     #my apps
-    'apps.account',
+    'apps.users',
     'apps.documents',
     'apps.events',
     'apps.products',
     'apps.schools',
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
@@ -78,6 +90,15 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+
+    
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 2
 
 WSGI_APPLICATION = 'EducaPlus.wsgi.application'
 
@@ -138,7 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ROLEPERMISSIONS_MODULE =  "EducaPlus.roles"
 
 #accounts_settings
-AUTH_USER_MODEL = "account.User"
-LOGIN_URL = "account:login"
+AUTH_USER_MODEL = "users.User"
+LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "dashboard"
-LOGOUT_REDIRECT_URL = "account:login"
+LOGOUT_REDIRECT_URL = "users:login"
