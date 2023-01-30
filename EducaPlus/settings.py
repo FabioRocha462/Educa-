@@ -37,10 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'rolepermissions',
     'crispy_forms',
     'django_filters',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 
     #my apps
     'apps.users',
@@ -81,13 +91,14 @@ TEMPLATES = [
     },
 ]
 
-# AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS = [
 
     
-#     'django.contrib.auth.backends.ModelBackend',
-#     'allauth.account.auth_backends.AuthenticationBackend',
-# ]
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
+SITE_ID = 2
 
 WSGI_APPLICATION = 'EducaPlus.wsgi.application'
 

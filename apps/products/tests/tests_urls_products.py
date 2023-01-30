@@ -19,7 +19,6 @@ class Tests_Urls_Products(TestCase):
         user = User.objects.create(
         username='teste', 
         email = 'teste@example.com',
-        cpf = '123.456.789-00',
         password='t1234567.',
         )
         user.save()

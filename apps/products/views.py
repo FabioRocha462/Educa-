@@ -113,7 +113,7 @@ class CleaningDeleteView(GroupRequiredMixin,LoginRequiredMixin, DeleteView):
 
 #Request Food
 class RequestFoodCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
-    group_required = u"asg"
+    group_required = [u"asg",u"nutricionist","secretary"]
     model = Request_Food
     form_class = RequestFoodForm
     # fields = ['food','quantity']
@@ -126,7 +126,7 @@ class RequestFoodCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
         return super(RequestFoodCreateView,self).form_valid(form)
 
 class RequestFoodListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
-    group_required = u"asg"
+    group_required = [u"asg",u"nutricionist","secretary"]
     model = Request_Food
     context_object_name = 'requestfoods'
     def get_queryset(self):

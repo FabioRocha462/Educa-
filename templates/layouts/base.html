@@ -25,8 +25,8 @@
           <li class="services">
             <a href="/"><i class="fa-solid fa-person -walking-arrow-right"></i>&nbsp Log</a>
             <ul class="dropdown">
-              <li><a href="/account/login/"><i class="fa-solid fa-right-to-bracket"></i>&nbsp Login </a></li>
-              <li><a href="/account/register/"><i class="fa-regular fa-id-card"></i>&nbsp Register</a></li>
+              <li><a href="/users/login/"><i class="fa-solid fa-right-to-bracket"></i>&nbsp Login </a></li>
+              <li><a href="/users/register/"><i class="fa-regular fa-id-card"></i>&nbsp Register</a></li>
             </ul>
           </li>
           {% endif %}
@@ -37,17 +37,17 @@
             {% if user.image %}
             <img src="{{user.image.url}}" alt="" width="64" height="64" class="rounded-circle me-2">
             <ul class="dropdown">
-              <li><a class="dropdown-item" href="/account/update/{{ user.id}}">Settings</a></li>
-              <li><a class="dropdown-item" href="/account/details/{{user.id}}">Profile</a></li>
-              <li><a class="dropdown-item" href="/account/logout/">Sair</a></li>
+              <li><a class="dropdown-item" href="/users/update/{{ user.id}}">Settings</a></li>
+              <li><a class="dropdown-item" href="/users/details/{{user.id}}">Profile</a></li>
+              <li><a class="dropdown-item" href="/users/logout/">Sair</a></li>
             </ul>
             {% else %}
             <img src="{% static 'assets/images/social-image.png' %}" alt="" width="64" height="64"
               class="rounded-circle me-2">
             <ul class="dropdown">
-              <li><a class="dropdown-item" href="/account/update/{{ user.id}}">Settings</a></li>
-              <li><a class="dropdown-item" href="/account/details/{{user.id}}">Profile</a></li>
-              <li><a class="dropdown-item" href="/account/logout/">Sair</a></li>
+              <li><a class="dropdown-item" href="/users/update/{{ user.id}}">Settings</a></li>
+              <li><a class="dropdown-item" href="/users/details/{{user.id}}">Profile</a></li>
+              <li><a class="dropdown-item" href="/users/logout/">Sair</a></li>
             </ul>
             {% endif %}
           </li>
