@@ -24,3 +24,11 @@ class UpdateForm(forms.ModelForm):
             "email",
             "image",
         ]
+
+class UpdateTypeUser(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = [
+            "typeUser",
+        ]
