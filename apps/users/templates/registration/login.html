@@ -6,84 +6,86 @@
 <div class="container">
   {% if form.errors %}
   <div class="alert alert-danger alert-dismissible" role="alert">
-    <div id="form_errors">
-      {% for key, value in form.errors.items %}
-      <strong>{{ value }}</strong>
-      {% endfor %}
-    </div>
+        <div id="form_errors">
+            {% for key, value in form.errors.items %}
+            <strong>{{ value }}</strong>
+            {% endfor %}
+        </div>
   </div>
-  {% endif %}
+      {% endif %}
+
 
   <div class="screen">
-      <form method="POST" action="" class="login" novalidate="">
-        {% csrf_token %}
-        <div class="login_field">
-          <label for="email"></label>
-          <i class="login_icon fa-solid fa-envelope"></i>
-          <input id="email" type="email" placeholder="Email" class="login_input" name="username" tabindex="1" required
-            autofocus>
-          <div class="invalid-feedback">
-            Please fill in your email
-          </div>
+    <form method="POST" action="" class="login" novalidate="">
+      {% csrf_token %}
+      <div class="login_field">
+        <label for="email"></label>
+        <i class="login_icon fa-solid fa-envelope"></i>
+        <input id="email" type="email" placeholder="Email" class="login_input" name="username" tabindex="1" required
+          autofocus>
+        <div class="invalid-feedback">
+          Please fill in your email
+        </div>
+      </div>
+
+      <div class="login_field">
+        <i class="login_icon fa-solid fa-lock"></i>
+        <input id="password" type="password" placeholder="Password" class="login_input" name="password" tabindex="2"
+          required>
+        <div class="invalid-feedback">
+          please fill in your password
         </div>
 
-        <div class="login_field">
-          <i class="login_icon fa-solid fa-lock"></i>
-          <input id="password" type="password" placeholder="Password" class="login_input" name="password" tabindex="2"
-            required>
-          <div class="invalid-feedback">
-            please fill in your password
-          </div>
-          
-          <div class="d-block">
-            <label for="password" class="control-label"></label>
-            <div class="float-right">
-              <a href="auth-forgot-password.html" class="text-small">
-                Forgot Password?
-              </a>
-            </div>
+        <div class="d-block">
+          <label for="password" class="control-label"></label>
+          <div class="float-right">
+            <a href="auth-forgot-password.html" class="text-small">
+              Forgot Password?
+            </a>
           </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-            <label class="custom-control-label" for="remember-me">Remember Me</label>
-          </div>
+      <div class="form-group">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+          <label class="custom-control-label" for="remember-me">Remember Me</label>
         </div>
-        
-        <button type="submit" class="button login_submit" tabindex="4">
-          Login <i class="button_icon fa-solid fa-arrow-right-to-bracket"></i>
-        </button>"
-      </form>
-      <div class="login-social">
-        <h4>Login via:</h4>
-        <form class="padding_formm" action="{% provider_login_url 'google' %}" method="post">
-          {% csrf_token %}
-          <button class="btn" type="submit">
-            <i class="fa-brands fa-google"></i>
-          </button>
-        </form>
-        <form class="padding_formm"  action="{% provider_login_url 'github' %}" method="post">
-          {% csrf_token %}
-          <button class="btn" type="submit">
-            <i class="fa-brands fa-github"></i>
-          </button> 
-        </form>
       </div>
-      <div class="screen_background">
-        <span class="screen_background_shape screen_background_shape4"></span>
-        <span class="screen_background_shape screen_background_shape3"></span>
-        <span class="screen_background_shape screen_background_shape2"></span>
-        <span class="screen_background_shape screen_background_shape1"></span>
-      </div>
-      <hr>
-      <p class="p">ainda não tem uma conta?<span style="margin:5px;"><a href="/users/register/"
-            style="color: #FFF;">Crie a sua</a></span></p>
-    </div>
+
+      <button type="submit" class="button login_submit" tabindex="4">
+        Login <i class="button_icon fa-solid fa-arrow-right-to-bracket"></i>
+      </button>"
     </form>
+    <div class="login-social">
+      <h4>Login via:</h4>
+      <form class="padding_formm" action="{% provider_login_url 'google' %}" method="post">
+        {% csrf_token %}
+        <button class="btn" type="submit">
+          <i class="fa-brands fa-google"></i>
+        </button>
+      </form>
+      <form class="padding_formm" action="{% provider_login_url 'github' %}" method="post">
+        {% csrf_token %}
+        <button class="btn" type="submit">
+          <i class="fa-brands fa-github"></i>
+        </button>
+      </form>
+    </div>
+    <div class="screen_background">
+      <span class="screen_background_shape screen_background_shape4"></span>
+      <span class="screen_background_shape screen_background_shape3"></span>
+      <span class="screen_background_shape screen_background_shape2"></span>
+      <span class="screen_background_shape screen_background_shape1"></span>
+    </div>
+    <hr>
+    <p class="p">ainda não tem uma conta?<span style="margin:5px;"><a href="/users/register/" style="color: #FFF;">Crie
+          a sua</a></span></p>
   </div>
+  </form>
 </div>
+</div>
+
 
 
 {% endblock %}
