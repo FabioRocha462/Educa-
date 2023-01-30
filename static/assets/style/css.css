@@ -3,13 +3,15 @@
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:300');
 
 
+/*###################################################*/
+/*#########                                 #########*/
+/*#########           Nav Editions          #########*/
+/*#########                                 #########*/
+/*###################################################*/
 
-
-/*Nav Edition*/
 .navbar a {
     text-decoration: none;
 }
-
 
 .navbar li {
     list-style: none;
@@ -24,20 +26,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;    
+    padding: 30px;    
     background-color: #4C489D;
-    color: #ccc;
+    color: #FFF;
     border-radius: 0px 0px 0px 70px;
-    box-shadow: 0px 0px 24px #5C5696;
+    box-shadow: 0px 2px 24px #5C5696;
     
 }
-   
+
 .nav-links a {
-    color: #ccc;
+    color: #FFF;
+    position: relative;
+    margin: auto;
 }
    
 .logo {
-    font-size: 32px;
+    font-size: 50px;
 }
 
 
@@ -55,7 +59,12 @@
 }
    
 .menu li {
-    padding: 5px 14px;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    margin: 2px 30px 2px 0px;
 }
 
 
@@ -64,29 +73,27 @@
 }
    
 .dropdown {
-    background-color: #6C63AC;
-    padding: 1em 0;
-    position: absolute;
+    background-color: #4C489D;
+    position: relative;
     display:none;
+    float: left;
     border-radius: 8px;
-    margin: 5px;
 }
    
-.dropdown li + li {    
-    margin-top: 10px;
-}
-   
-.dropdown li {
-    padding: 0.5em 1em;
-    width: 8em;
+.dropdown li .dropdown-item{
+    width: 100%;
     text-align: center;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: auto;
 }
 
-
-.dropdown li:hover {
-    background-color: #7E7BB9;
-    margin: 2px;
+.dropdown li .dropdown-item:hover {
+    background-color: #7C78B8;
     color: #FFF;
+    font-weight: 500;
 }
 
 
@@ -96,7 +103,11 @@
 }
 
 
-/*Login Edition*/
+/*###################################################*/
+/*#########                                 #########*/
+/*#########        Login Editions        #########*/
+/*#########                                 #########*/
+/*###################################################*/
 
 
 html {
@@ -303,8 +314,43 @@ body{
     bottom: 0;
 }
 
+.login-social{
+    top: 85%;
+    z-index: 5;
+    position: absolute;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    right: 10%;
+}
 
-/*Footer Editions*/
+.login-social form button{
+    color: #4C489D !important;
+    background: #FFF;
+    text-shadow: 0 0 2px #4C489D;
+    padding: 5px 10px;
+    border-radius: 100%;
+    margin: 0px 7px;
+    box-shadow: 4px 0px 5px #4C489D;
+    text-decoration: none;
+}
+
+.login-social h4{
+    font-size: 18px;
+    color: #fff;
+    padding: 5px;
+    text-shadow: 0 0 8px #4C489D;
+    border-bottom: 1px dotted #fff;
+    
+}
+
+/*###################################################*/
+/*#########                                 #########*/
+/*#########        Footer Editions        #########*/
+/*#########                                 #########*/
+/*###################################################*/
 
 
 .footer-basic {
@@ -368,8 +414,11 @@ body{
   }
 
 
-
-/*Regier Editions*/
+/*###################################################*/
+/*#########                                 #########*/
+/*#########        Register Editions        #########*/
+/*#########                                 #########*/
+/*###################################################*/
 
 .content{
     min-height: 100vh;
@@ -396,13 +445,13 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #fff;
+    color: #4C489D;
 }
 
 .button-form{
     z-index: 2;
     position: relative;
-    background: #fff;
+    background: linear-gradient(180deg, #7670e7, #4C489D);
     font-size: 14px;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -414,7 +463,7 @@ body{
     display: flex;
     align-items: center;
     width: 50%;
-    color: #4C489D;
+    color: #FFF;
     box-shadow: 0px 2px 2px #5C5696;
     cursor: pointer;
     transition: .2s;
@@ -425,7 +474,7 @@ body{
 }
 
 .form-create{
-    background:#7875B5;
+    background:#ffffff;
     max-width: 1000px;
     min-height: 100vh;
     padding-top: 5px;
@@ -436,48 +485,64 @@ body{
 }
 
 .form-control{
-    background: linear-gradient(180deg, #665ea5, #938cd8);
-    box-shadow: 0px 0px 20px #5C5696 !important;
-    border-radius:25px !important;
-    margin: auto !important;
-    color: #fff;
-    width: 80% !important;
+    background: #ffffff;
+    border-radius:25px;
+    color: #4C489D;
+    width: 90% !important;
+    margin: 5px auto !important;
 }
 
 .form-control input{
     z-index: 2;
     position:relative;
-    border-bottom: 2px solid #D1D1D4;
-    background: #fff;
+    border: none;
+    border-bottom: 2px solid #7875B5;
+    background: none;
     padding: 10px;
     padding-left: 24px;
-    font-weight: 500;
-    width: 90%;
-    margin: 7px auto !important;
-    border-radius: 15px;
-    box-shadow: 0px 5px 4px rgb(9, 5, 134) !important;
-    border: 1px solid #4C489D;
+    font-weight: 700;
+    width: 75%;
+    transition: .2s;
+}
+
+.form-control select{
+    z-index: 2;
+    position:relative;
+    border: none;
+    border-bottom: 2px solid #7875B5;
+    background: none;
+    padding: 10px;
+    padding-left: 24px;
+    font-weight: 700;
+    width: 75%;
+    transition: .2s;
+}
+
+.form-control select option{
+    color:#4C489D;
+    margin-bottom: 5px !important;
+    border-bottom: 2px dotted #4C489D !important;
 }
 
 .form-control label{
     position: relative;
-    color: #fff;
+    color: #4C489D;
     padding-left: 24px;
     font-weight: 500;
 }
 
 .form-control li{
-    color: #ccc;
+    color: #4C489D;
     width: 90%;
 }
 
 .form-control small{
-    color: #ccc !important;
+    color: #4C489D !important;
 }
 .icon-submit{
     font-size: 20px;
     margin-left: auto;
-    color: #7875B5;
+    color: #FFF;
 }
 
 .bigicone{
