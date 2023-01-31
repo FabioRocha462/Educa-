@@ -1,6 +1,8 @@
 [run]
 omit=
     */manage.py
-    */_init_.py
-    /tests/
-    /migrations/
+    */__init__.py
+    */tests/*
+    */migrations/*
+    */core/*
+    */usr/*
