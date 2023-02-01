@@ -19,6 +19,7 @@ class Home(LoginRequiredMixin, TemplateView):
     template_name = "users/dashboard.html"
 
 
+
 class Register(View):
     form_class = RegisterForm
     initial = {"key": "value"}
@@ -118,7 +119,7 @@ def updateTypeUser(request,uuid):
         if user.typeUser == 'coordenador':
             assign_role(user,'coordinator')
         if user.typeUser == 'fooddivider':
-            assign_role(user,'food_divider')
+            assign_role(user,'fooddivider')
         if user.typeUser == 'nutricionist':
             assign_role(user,'nutricionist')
         if user.typeUser == 'secretary':
