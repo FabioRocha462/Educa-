@@ -1,55 +1,9 @@
-from django.test import TestCase
-from django.test import Client, TestCase
-from apps.products.models import Food
+from EducaPlus.tests import test_base
 from django.urls import reverse_lazy
-# from django.contrib.auth.models import User
-from apps.users.models import User
-from apps.products.models import Food
-from apps.events.models import Event
 import datetime
 # Create your tests here.
-class Teste_Views_Events(TestCase):
+class Teste_Views_Events(test_base.Base_test_core):
 
-    def setUp(self) -> None:
-        return super().setUp
-
-    def tearDown(self) -> None:
-        return super().tearDown()
-
-
-
-    def create_user(self):
-        user = User.objects.create(
-        username='teste', 
-        email = 'teste@example.com',
-        password='t1234567.',
-        )
-        user.save()
-        return user
-
-    def login(self):
-        user_logged = self.cliente.login(email = 'teste@example.com', password = 't1234567.')
-        return user_logged
-
-    def create_event(self):
-
-        event = Event.objects.create(
-            name = 'eventtest',
-            school = 3,
-            date = datetime.date.today(),
-            user = self.create_user()
-        )
-        return event
-
-    def create_food(self):
-        food  =Food.objects.create(
-            name ="foodtest",
-             quantity = 40,
-            validity = datetime.date.today(),
-            typeCategoria = 1,
-
-        )
-        return food
     def test_event_create_get(self):
 
         response = self.client.get(reverse_lazy('events:create_event'),follow=True)

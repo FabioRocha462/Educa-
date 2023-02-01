@@ -12,3 +12,5 @@ apps/products/__pycache__/
 apps/schools/__pycache__/
 apps/users/__pycache__/
 .vscode/
+EducaPlus/__pycache__/
+EducaPlus/tests/__pycache__/
