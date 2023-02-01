@@ -2,3 +2,13 @@ env/
 account/
 venv/
 db.sqlite3
+__pycache__/
+.pytest_cache/
+apps/__pycache__/
+apps/account/
+apps/documents/__pycache__/
+apps/events/__pycache__/
+apps/products/__pycache__/
+apps/schools/__pycache__/
+apps/users/__pycache__/
+.vscode/
