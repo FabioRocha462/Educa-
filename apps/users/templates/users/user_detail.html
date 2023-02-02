@@ -13,7 +13,7 @@
                 <img src="{% static 'assets/images/social-image.png' %}" alt="" width="150px" height="150px"
               class="rounded-circle me-2">
                 {% endif %}
-                <a href="/account/update/{{user.id}}" class="btn btn-primary">
+                <a href="/users/update/{{user.uuid}}/" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                     <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
                   </svg></a>
@@ -27,10 +27,83 @@
             <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z"/>
             <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648Zm-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z"/>
           </svg>  {{user.email}}</h5>
-        <h5 class="color_string"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
-            <path d="M8.5 4.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L7 6l-.549.317a.5.5 0 1 0 .5.866l.549-.317V7.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L9 6l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V4.5zM5.5 9a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
-            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
-          </svg>  {{user.cpf}}</h5>
+    {% endif %}
+    <hr>
+    <div style = "margin:50px;" class="row align-items-start">
+      {% if user.typeUser != "asg" %}
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <div style = "display: flex;align-items: center;justify-content: center;"class="card-header">
+            <h1>Memorandos</h1>
+          </div>
+          <div class="center" style="padding: 1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-file-richtext" viewBox="0 0 16 16">
+              <path d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208zM5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+            </svg>
+          </div>
+          <div class="center" style="padding: 2rem;">
+            <a href="#" class="btn btn-success">{{memorandos}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <div style = "display: flex;align-items: center;justify-content: center;"class="card-header">
+            <h1>Ofícios</h1>
+          </div>
+          <div class="center" style="padding: 1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-file-richtext" viewBox="0 0 16 16">
+              <path d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208zM5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+            </svg>
+          </div>
+          <div class="center" style="padding: 2rem;">
+            <a href="#" class="btn btn-success">{{officials}}</a>
+          </div>
+        </div>
+      </div>
+      {% endif%}
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <div style = "display: flex;align-items: center;justify-content: center;"class="card-header">
+            <h1>Requerimentos</h1>
+          </div>
+          <div class="center" style="padding: 1rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" fill="currentColor" class="bi bi-file-richtext" viewBox="0 0 16 16">
+              <path d="M7 4.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V7.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V7s1.54-1.274 1.639-1.208zM5 9a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+            </svg>
+          </div>
+          <div class="center" style="padding: 2rem;">
+            <a href="#" class="btn btn-success">{{requeriments}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    {% if user.typeUser == "secretary" or user.typeUser == "coordenator" %}
+      <div class="table-responsive">
+        <table class="table table-bordered table-md">
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Data</th>
+              <th>Escola</th>
+              <th class="col-md-2 center-block">Aprovar</th>
+            </tr>
+          {% for event in events %}
+            <tr>
+               <td><a class="btn btn-success" href="">{{ forloop.counter }}</a></td>
+               <td><a class="btn btn-success"   href="">{{event.name}}</a></td>
+               <td>{{event.date}}</td>
+               <td>{{event.school}}</td>
+               <td class="col-md-2 center-block text-center" ><a class="btn btn-primary" href="">Confirmar</a></td>
+            </tr>   
+          {% endfor %}
+        </table>
+        
+      </div>
     {% endif %}
 </div>
 {% endblock %}

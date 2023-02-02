@@ -2,7 +2,6 @@
 {% load crispy_forms_tags %}
 {% block title %} List cleaning {% endblock %}
 {% block content %}
-<div style="margin:50px">
 <section class="section">
   <form action="" method="get">
     <div class="row">
@@ -65,7 +64,7 @@
                 <td>{{ forloop.counter }}</td>
                 <td>{{ cleaning.name }}</td>
                 <td>{{ cleaning.quantity }}</td>
-                {% if user.typeUser == 'asg' %}
+                {% if user.typeUser == "fooddivider" %}
                   <td class="col-md-2 center-block text-center">
                     <a href="/products/updatecleaning/{{cleaning.uuid}}/" class="btn btn-primary">Editar</a>
                     <a href="/products/deletecleaning/{{cleaning.uuid}}/" class="btn btn-danger">Remover</a>
@@ -82,6 +81,4 @@
     </div>
   </div>
 </section>
-
-</div>
 {% endblock %}

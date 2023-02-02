@@ -30,14 +30,13 @@
                     <div class="center">
                         <form method="post">
                             {% csrf_token %}
-                            <h2>Excluir o alimento {{cleaning.name}}?</h2>
+                            <h2>Excluir o produto {{cleaning.name}}?</h2>
                             <p>Você tem certeza em excluir {{cleaning.name}}?</p>
                             <p class="form-buttons">
-                                <input type="submit" class="btn btn-primary" value="Delete">
-                                <a href="/despesas/list" class="btn btn-outline">Cancel</a>
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                                <a href="/despesas/list" class="btn btn-success">Cancel</a>
                             </p>
                         </form>
-                        <a style="margin-top: 20px;" href="/products/listfood/" class="btn btn-primary">Voltar</a>
 
                 </div>
                     

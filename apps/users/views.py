@@ -13,11 +13,12 @@ from django.views.generic import UpdateView,DetailView,ListView
 
 from . form import RegisterForm,UpdateForm,UpdateTypeUser
 from . models import User
+from apps.documents.models import Memorando,Official,Requeriment
+from apps.events.models import Event
 from . filters import UserFilter
 # Create your views here.
 class Home(LoginRequiredMixin, TemplateView):
     template_name = "users/dashboard.html"
-
 
 
 class Register(View):
@@ -72,6 +73,13 @@ class DetailPerfil(LoginRequiredMixin,DetailView):
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
     context_object_name = 'user'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['memorandos'] = Memorando.objects.filter(user = self.request.user).count()
+        context['officials'] = Official.objects.filter(user = self.request.user).count()
+        context['requeriments'] = Requeriment.objects.filter(user = self.request.user).count()
+        context['events'] = Event.objects.filter(status_activated = False)
+        return context
     
 
 class UpdatePerfil(LoginRequiredMixin,UpdateView):
