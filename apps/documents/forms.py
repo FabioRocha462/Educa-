@@ -19,6 +19,7 @@ class MemorandoForm(ModelForm):
             'receiver',
             "destiny",
             "description",
+            'title',
         ]
         widgets = {
             'destiny': forms.RadioSelect(attrs={'class': 'form-control', 'type':'radio'}),
@@ -40,6 +41,7 @@ class OfficialForm(ModelForm):
             'receiver',
             "destiny",
             "description",
+            "title",
         ]
 
         widgets = {
@@ -63,6 +65,7 @@ class RequerimentsForm(ModelForm):
             'receiver',
             "destiny",
             "description",
+            "title",
         ]
 
         widgets = {

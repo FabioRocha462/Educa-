@@ -41,7 +41,7 @@ class MemorandoListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
     filterset= MemorandoFilter
     paginate_by = 10
     def get_queryset(self):
-        queryset = super().get_queryset().filter(user=self.request.user)
+        queryset = super().get_queryset().all().order_by('created_at')
         self.filterset = self.filterset(self.request.GET, queryset=queryset)
         return self.filterset.qs
 
@@ -85,7 +85,7 @@ class OfficialListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
     filterset = OfficialFilter
     paginate_by = 10
     def get_queryset(self):
-        queryset = super().get_queryset().filter(user=self.request.user)
+        queryset = super().get_queryset().all().order_by('created_at')
         self.filterset = self.filterset(self.request.GET, queryset=queryset)
         return self.filterset.qs
 
@@ -127,7 +127,7 @@ class RequerimentListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
     filterset = RequirementFilter
     paginate_by = 10
     def get_queryset(self):
-        queryset = super().get_queryset().filter(user=self.request.user)
+        queryset = super().get_queryset().all().order_by('created_at')
         self.filterset = self.filterset(self.request.GET, queryset=queryset)
         return self.filterset.qs
 

@@ -5,19 +5,21 @@ from apps.users.models import User
 
 class Memorando(models.Model):
     choicesSecretary = (
-        ('1','Secretaria de Planejamento'),
-        ('2','Secretaria de Obras'),
-        ('3','Secretaria de Finanças'),
-        ('4','Gabinete do Prefeito'),
-        ('5','Camâra de Vereadores'),
-        ('6','Secretaria de Educação'),
-        ('7','Outros'),
+        ('Secretaria de Planejamento','Secretaria de Planejamento'),
+        ('Secretaria de Obras','Secretaria de Obras'),
+        ('Secretaria de Finanças','Secretaria de Finanças'),
+        ('Gabinete do Prefeito','Gabinete do Prefeito'),
+        ('Camâra de Vereadores','Camâra de Vereadores'),
+        ('Secretaria de Educação','Secretaria de Educação'),
+        ('Outros','Outros'),
     )
-    uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
-    others = models.CharField(max_length=255, null=True, blank=True)
+    uuid = models.UUIDField(primary_key = True,unique = True, editable = False, default=uuid.uuid4)
+    others = models.CharField(max_length = 255, null=True, blank=True)
     number = models.IntegerField()
     receiver = models.CharField(max_length=255,null=True, blank=True)
-    destiny = models.CharField(max_length=2, choices=choicesSecretary)
+    title =  models.CharField(max_length = 10000, null=True, blank = True)
+    destiny = models.CharField(max_length=50, choices=choicesSecretary)
+    confirm = models.BooleanField(default=False, null = True, blank = True)
     description = models.TextField(null=True, blank = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -28,19 +30,21 @@ class Memorando(models.Model):
 
 class Official(models.Model):
     choicesSecretary = (
-        ('1','Secretaria de Planejamento'),
-        ('2','Secretaria de Obras'),
-        ('3','Secretaria de Finanças'),
-        ('4','Gabinete do Prefeito'),
-        ('5','Camâra de Vereadores'),
-        ('6','Secretaria de Educação'),
-        ('7','Outros'),
+        ('Secretaria de Planejamento','Secretaria de Planejamento'),
+        ('Secretaria de Obras','Secretaria de Obras'),
+        ('Secretaria de Finanças','Secretaria de Finanças'),
+        ('Gabinete do Prefeito','Gabinete do Prefeito'),
+        ('Camâra de Vereadores','Camâra de Vereadores'),
+        ('Secretaria de Educação','Secretaria de Educação'),
+        ('Outros','Outros'),
     )
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
     number = models.IntegerField()
     others = models.CharField(max_length=255, null=True, blank=True)
+    title =  models.CharField(max_length = 10000, null=True, blank = True)
     receiver = models.CharField(max_length=255,null=True, blank=True)
-    destiny = models.CharField(max_length=2, choices=choicesSecretary)
+    destiny = models.CharField(max_length=50, choices=choicesSecretary)
+    confirm = models.BooleanField(default=False, null = True, blank = True)
     description = models.TextField(null=True, blank = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -52,19 +56,21 @@ class Official(models.Model):
 
 class Requeriment(models.Model):
     choicesSecretary = (
-        ('1','Secretaria de Planejamento'),
-        ('2','Secretaria de Obras'),
-        ('3','Secretaria de Finanças'),
-        ('4','Gabinete do Prefeito'),
-        ('5','Camâra de Vereadores'),
-        ('6','Secretaria de Educação'),
-        ('7','Outros'),
+        ('Secretaria de Planejamento','Secretaria de Planejamento'),
+        ('Secretaria de Obras','Secretaria de Obras'),
+        ('Secretaria de Finanças','Secretaria de Finanças'),
+        ('Gabinete do Prefeito','Gabinete do Prefeito'),
+        ('Camâra de Vereadores','Camâra de Vereadores'),
+        ('Secretaria de Educação','Secretaria de Educação'),
+        ('Outros','Outros'),
     )
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4)
     number = models.IntegerField()
+    title =  models.CharField(max_length = 10000, null=True, blank = True)
     others = models.CharField(max_length=255, null=True, blank=True)
     receiver = models.CharField(max_length=255,null=True, blank=True)
-    destiny = models.CharField(max_length=2, choices=choicesSecretary)
+    destiny = models.CharField(max_length=50, choices=choicesSecretary)
+    confirm = models.BooleanField(default=False, null = True, blank = True)
     description = models.TextField(null=True, blank = True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

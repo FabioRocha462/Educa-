@@ -43,7 +43,7 @@ class Register(View):
                 assign_role(user,'coordinator')
             if typeUser == "asg":
                 assign_role(user,'asg')
-            if typeUser == "food_divider":
+            if typeUser == "fooddivider":
                 assign_role(user,'fooddivider')
             if typeUser == "nutricionist":
                 assign_role(user,'nutricionist')
