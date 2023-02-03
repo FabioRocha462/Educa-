@@ -14,3 +14,4 @@ apps/users/__pycache__/
 .vscode/
 EducaPlus/__pycache__/
 EducaPlus/tests/__pycache__/
+.env

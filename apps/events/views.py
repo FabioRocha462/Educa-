@@ -96,6 +96,18 @@ def food_event(request,uuid_event,uuid_food):
         )
 
         food_event.save()
-
+        messages.success(request, "The event was confirmed successfully.")
         return redirect(f"/events/eventsdetail/{uuid_event}/")
+    return redirect("/")
+
+@login_required
+def confirmEvent(request,uuid_event):
+
+    if request.method == 'GET':
+
+        event = Event.objects.get(uuid = uuid_event)
+        event.status_activated = True
+        event.save()
+
+        return redirect(f"/users/usersdetail/{request.user.uuid}/")
     return redirect("/")

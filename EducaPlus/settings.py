@@ -60,6 +60,22 @@ INSTALLED_APPS = [
     'apps.schools',
 ]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '182086588550-9mj8duoh9i8mhrmc5hr40a65tikkqu4m.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    },
+    'github': {
+        'APP': {
+            'client_id': 'db575d5796291ff4237d',
+            'secret': 'ebe7d7efbc5e71df61da276c5f64469e77eb5e10',
+            'key': ''
+        }
+    }
+}
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
@@ -99,6 +115,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 2
+
+
 
 WSGI_APPLICATION = 'EducaPlus.wsgi.application'
 
