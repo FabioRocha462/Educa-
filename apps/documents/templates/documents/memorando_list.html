@@ -48,17 +48,29 @@
             <table class="table table-bordered table-md">
               <tr>
                 <th>#</th>
+                <th>título</th>
                 <th>destinatário</th>
                 <th>Data</th>
                 <th>Número</th>
+                <th class="col-md-2 center-block">Ações</th>
                 
               </tr>
               {% for memorando in object_list %}
               <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="/documents/memorandodetail/{{memorando.uuid}}/" class="btn btn-success">{{ memorando.receiver }}</a></td>
+                <td><a href="/documents/memorandodetail/{{memorando.uuid}}/" class="btn btn-success">{{memorando.title}}</a></td>
+                <td>{{ memorando.receiver }}</td>
                 <td>{{memorando.created_at}}</td>
                 <td><a class="btn btn-primary" >{{memorando.number}}</a></td>
+                <td class="col-md-2 center-block text-center">
+                  {% if user.typeUser == "secretary" %}
+                    {% if memorando.confirm %}
+                      <a class="btn btn-success disabled" href="/documents/memorandoupdate/{{memorando.uuid}}/">Editar</a>
+                    {% else %}
+                      <a class="btn btn-success" href="/documents/memorandoupdate/{{memorando.uuid}}/">Editar</a>
+                    {% endif %}
+                  {% endif %}
+                </td>
               </tr>
               {% endfor %}
             </table>

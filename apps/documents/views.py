@@ -51,11 +51,34 @@ class MemorandoListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
         return context
 
 class MemorandoDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+
     group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
     model = Memorando
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
     context_object_name = 'memorando'
+
+class MemorandoUpdateView(GroupRequiredMixin,LoginRequiredMixin,UpdateView):
+
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
+    model = Memorando
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    form_class = MemorandoForm
+    success_url = reverse_lazy("documents:memorando_list")
+
+
+@login_required
+def confirming_memorando(request,uuid):
+
+    if request.method == "GET":
+
+        memorando = Memorando.objects.get(uuid=uuid)
+        memorando.confirm = True
+        memorando.save()
+        return reverse_lazy("documents:memorando_list")
+    return reverse_lazy("dashboard")
+
    
 
 # views Official
