@@ -1,6 +1,7 @@
 from pathlib import Path
 from time import sleep
 from webbrowser import Chrome
+from django.test import TestCase
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -23,3 +24,11 @@ def make_chrome_browser(*options):
     browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
     return browser
+
+class PageLogin:
+    def test_login(self):
+        browser = make_chrome_browser()
+
+        browser.get('http://127.0.0.1:8000/users/login')
+        sleep(5)
+        assert "login" in browser.title

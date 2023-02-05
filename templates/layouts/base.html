@@ -140,21 +140,16 @@
             {% if user.is_authenticated %}
             <li class="services">
               {% if user.image %}
-              <img src="{{user.image.url}}" alt="" width="64" height="64" class="rounded-circle me-2" style="margin-left:5px;">
-              <ul class="dropdown">
-                <li><a class="dropdown-item" href="/users/update/{{user.uuid}}/">Settings</a></li>
-                <li><a class="dropdown-item" href="/users/details/{{user.uuid}}/">Profile</a></li>
-                <li><a class="dropdown-item" href="/users/logout/">Sair</a></li>
-              </ul>
+                <img src="{{user.image.url}}" alt="" width="64" height="64" class="rounded-circle me-2" style="margin-left:5px;">
               {% else %}
-              <img src="{% static 'assets/images/social-image.png' %}" alt="" width="64" height="64"
+                <img src="{% static 'assets/images/social-image.png' %}" alt="" width="64" height="64"
                 class="rounded-circle me-2">
+              {% endif %}
               <ul class="dropdown">
                 <li><a class="dropdown-item" href="/users/update/{{user.uuid}}/">Settings</a></li>
                 <li><a class="dropdown-item" href="/users/details/{{user.uuid}}/">Profile</a></li>
-                <li><a class="dropdown-item" href="/users/logout/">Sair</a></li>
+                <li><a id="logout"  class="dropdown-item" href="/users/logout/">Logout</a></li>
               </ul>
-              {% endif %}
             </li>
             {% endif %}
           </div>
