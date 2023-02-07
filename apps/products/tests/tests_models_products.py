@@ -1,4 +1,4 @@
-from EducaPlus.tests import test_base
+from EducaPlus.tests import factories,test_base
 from django.urls import reverse_lazy
 import datetime
 class Tests_Models_Products(test_base.Base_test_core):
@@ -28,3 +28,14 @@ class Tests_Models_Products(test_base.Base_test_core):
         request = self.create_request_cleaning()
         self.assertEqual(request.name, str(request))
         
+   #----------------------------------------------------------------
+   # ----------------------------------------------------------------
+   # ----------------------------------------------------------------
+   # ----------------------------------------------------------------
+   #                          test factory
+   # 
+
+    def test_factory_cleaningfactory(self):
+
+        cleaning = factories.CleaningFactory()
+        self.assertEqual(cleaning.name, str(cleaning))
