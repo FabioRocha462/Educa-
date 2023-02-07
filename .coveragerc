@@ -6,3 +6,4 @@ omit=
     */migrations/*
     */core/*
     */usr/*
+    */utils/*

@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
@@ -76,8 +76,8 @@ def confirming_memorando(request,uuid):
         memorando = Memorando.objects.get(uuid=uuid)
         memorando.confirm = True
         memorando.save()
-        return reverse_lazy("documents:memorando_list")
-    return reverse_lazy("dashboard")
+        return redirect("/documents/memorandolist/")
+    return redirect("/")
 
    
 
@@ -124,6 +124,25 @@ class OfficialDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
     slug_field = 'uuid'
     context_object_name = 'official'
 
+class OfficialUpdateView(GroupRequiredMixin,LoginRequiredMixin,UpdateView):
+
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
+    model = Official
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    form_class = OfficialForm
+    success_url = reverse_lazy("documents:official_list")
+
+@login_required
+def confirming_official(request,uuid):
+
+    if request.method == "GET":
+
+        official = Official.objects.get(uuid=uuid)
+        official.confirm = True
+        official.save()
+        return redirect("/documents/officiallist/")
+    return redirect("/")
 # views Requirements
 #----------------------------------------------------------------
 #----------------------------------------------------------------
@@ -165,3 +184,23 @@ class RequerimentDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
     context_object_name = 'requeriment'
+
+class RequerimentUpdateView(GroupRequiredMixin,LoginRequiredMixin,UpdateView):
+
+    group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
+    model = Requeriment
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    form_class = RequerimentsForm
+    success_url = reverse_lazy("documents:requeriment_list")
+
+@login_required
+def confirming_requeriment(request,uuid):
+
+    if request.method == "GET":
+
+       requeriment = Requeriment.objects.get(uuid=uuid)
+       requeriment.confirm = True
+       requeriment.save()
+       return redirect("/documents/requerimentlist/")
+    return redirect("/")

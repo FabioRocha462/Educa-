@@ -138,7 +138,7 @@
             <li><a href="/"><i class="fa-solid fa-users-line"></i>&nbsp About</a></li>
             <li><a href="/"><i class="fa-solid fa-user-plus"></i>&nbsp Contact</a></li>
             {% if user.is_authenticated %}
-            <li class="services">
+            <li id="service" class="services">
               {% if user.image %}
                 <img src="{{user.image.url}}" alt="" width="64" height="64" class="rounded-circle me-2" style="margin-left:5px;">
               {% else %}
@@ -147,7 +147,7 @@
               {% endif %}
               <ul class="dropdown">
                 <li><a class="dropdown-item" href="/users/update/{{user.uuid}}/">Settings</a></li>
-                <li><a class="dropdown-item" href="/users/details/{{user.uuid}}/">Profile</a></li>
+                <li><a id="profile"class="dropdown-item" href="/users/details/{{user.uuid}}/">Profile</a></li>
                 <li><a id="logout"  class="dropdown-item" href="/users/logout/">Logout</a></li>
               </ul>
             </li>

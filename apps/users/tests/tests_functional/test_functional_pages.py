@@ -3,9 +3,11 @@ import time
 from time import sleep
 from django.test import TestCase
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
         
 class FunctionalTestsUsers(TestCase):
     
@@ -60,21 +62,37 @@ class FunctionalTestsUsers(TestCase):
 
         browser = webdriver.Chrome()
         browser.get('http://127.0.0.1:8000/users/login/')
+        wait = WebDriverWait(browser, 10)
         username = browser.find_element(By.NAME,"username")
         username.clear()
         username.send_keys("sec@gmail.com")
         password = browser.find_element(By.NAME, "password")
         password.send_keys("sec12345.")
         password.send_keys(Keys.RETURN)
-        click_logout = browser.find_element(By.LINK_TEXT, u'Logout')
+        image = wait.until(EC.presence_of_element_located((By.ID, 'service')))
+        image.click()
+        click_logout = wait.until(EC.presence_of_element_located((By.ID, 'logout')))
         click_logout.click()
         sleep(5)
         assert "Login" in browser.title
         browser.quit()
 
+    def test_user_perfil(self):
 
-
-
+        browser = webdriver.Chrome()
+        browser.get('http://127.0.0.1:8000/users/login/')
+        wait = WebDriverWait(browser, 10)
+        username = browser.find_element(By.NAME,"username")
+        username.clear()
+        username.send_keys("sec@gmail.com")
+        password = browser.find_element(By.NAME, "password")
+        password.send_keys("sec12345.")
+        password.send_keys(Keys.RETURN)
+        image = wait.until(EC.presence_of_element_located((By.ID, 'service')))
+        image.click()
+        click_perfil = wait.until(EC.presence_of_element_located((By.ID, 'profile')))
+        click_perfil.click()
+        assert "Dashboard" in browser.title
 
 
         
