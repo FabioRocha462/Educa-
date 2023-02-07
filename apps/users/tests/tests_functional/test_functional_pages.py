@@ -46,9 +46,9 @@ class FunctionalTestsUsers(TestCase):
         browser = webdriver.Chrome()
         browser.get('http://127.0.0.1:8000/users/register/')
         username = browser.find_element(By.NAME, "username")
-        username.send_keys("teste selenium")
+        username.send_keys("TesteSelenium")
         email = browser.find_element(By.NAME, "email")
-        email.send_keys("selenium@gmail.com")
+        email.send_keys("Sselenium@gmail.com")
         password1 = browser.find_element(By.NAME, "password1")
         password1.send_keys("sel12345.")
         password2 = browser.find_element(By.NAME, "password2")
@@ -92,7 +92,7 @@ class FunctionalTestsUsers(TestCase):
         image.click()
         click_perfil = wait.until(EC.presence_of_element_located((By.ID, 'profile')))
         click_perfil.click()
-        assert "Dashboard" in browser.title
+        assert "Detail User" in browser.title
 
 
         
