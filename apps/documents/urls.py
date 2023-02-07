@@ -23,5 +23,5 @@ urlpatterns = [
     path("requerimentlist/",RequerimentListView.as_view(), name = "requeriment_list"),
     path("requerimentdetail/<uuid:uuid>/",RequerimentDetailView.as_view(), name="requeriment_detail"),
     path("requerimentupdate/<uuid:uuid>/",RequerimentUpdateView.as_view(),  name="requeriment_update"),
-    path("requerimentoconfirmed/<str:uuid>/",confirming_requeriment, name="confirm_requeriment"),
+    path("requerimentconfirmed/<str:uuid>/",confirming_requeriment, name="confirm_requeriment"),
 ]

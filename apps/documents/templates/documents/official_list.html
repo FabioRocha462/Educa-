@@ -52,6 +52,7 @@
                 <th>destinatário</th>
                 <th>Data</th>
                 <th>Número</th>
+                <th class="col-md-2 center-block">Ações</th>
                 
               </tr>
               {% for official in object_list %}
@@ -60,9 +61,18 @@
                 <td><a href="/documents/officialdetail/{{official.uuid}}/" class="btn btn-success">{{ official.receiver }}</a></td>
                 <td>{{official.created_at}}</td>
                 <td><a class="btn btn-primary" >{{official.number}}</a></td>
+                <td class="col-md-2 center-block text-center">
+                  {% if user.typeUser == "secretary" %}
+                    {% if official.confirm %}
+                      <a class="btn btn-success disabled" href="/documents/officialupdate/{{official.uuid}}/">Editar</a>
+                    {% else %}
+                      <a class="btn btn-success" href="/documents/officialupdate/{{official.uuid}}/">Editar</a>
+                    {% endif %}
+                  {% endif %}
+                </td>
               </tr>
               {% endfor %}
-            </table>s
+            </table>
           </div>
 
                         {% if is_paginated %}

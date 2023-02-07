@@ -52,6 +52,7 @@
                 <th>destinatário</th>
                 <th>Data</th>
                 <th>Número</th>
+                <th class="col-md-2 center-block">Ações</th>
                 
               </tr>
               {% for requeriment in object_list %}
@@ -60,6 +61,15 @@
                 <td><a href="/documents/requerimentdetail/{{requeriment.uuid}}/" class="btn btn-success">{{ requeriment.receiver }}</a></td>
                 <td>{{requeriment.created_at}}</td>
                 <td><a class="btn btn-primary" >{{requeriment.number}}</a></td>
+                <td class="col-md-2 center-block text-center">
+                  {% if user.typeUser == "secretary" %}
+                    {% if requeriment.confirm %}
+                      <a class="btn btn-success disabled" href="/documents/requerimentupdate/{{requeriment.uuid}}/">Editar</a>
+                    {% else %}
+                      <a class="btn btn-success" href="/documents/requerimentupdate/{{requeriment.uuid}}/">Editar</a>
+                    {% endif %}
+                  {% endif %}
+                </td>
               </tr>
               {% endfor %}
             </table>
