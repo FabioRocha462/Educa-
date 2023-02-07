@@ -12,4 +12,4 @@ class Test_Models_Events(test_base.Base_test_core):
     def test_model_events(self):
         
         event = self.create_event()
-        self.assertEqual(event.name, str(event))
+        self.assertEqual(str(event), event.name)
