@@ -113,7 +113,6 @@ class AdminUsers(GroupRequiredMixin,LoginRequiredMixin,ListView):
         return context
 
 @login_required
-
 def updateTypeUser(request,uuid):
 
     if request.method == 'GET':
@@ -134,3 +133,17 @@ def updateTypeUser(request,uuid):
             assign_role(user,'secretary')
         print(typeUser)
         return redirect('/users/adminusers/')
+
+@login_required
+def status_user(request, uuid):
+
+    if request.method == "GET":
+
+        user = User.objects.get(uuid = uuid)
+        if "check" in request.GET:
+            user.is_active = True 
+        else:
+            user.is_active = False
+        user.save()
+        return redirect('/users/adminusers/')
+    return redirect('/')
