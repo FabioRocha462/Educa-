@@ -1,5 +1,4 @@
-from EducaPlus.tests import test_base
-from EducaPlus.tests import factories
+from EducaPlus.tests import test_base,factories
 from django.urls import reverse_lazy
 import datetime
 class Test_Views_Products(test_base.Base_test_core):
