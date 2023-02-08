@@ -5,14 +5,14 @@
 
 <div class="container">
   {% if form.errors %}
-  <div class="alert alert-danger alert-dismissible" role="alert">
-        <div id="form_errors">
-            {% for key, value in form.errors.items %}
-            <strong>{{ value }}</strong>
-            {% endfor %}
-        </div>
-  </div>
-      {% endif %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+          <div id="form_errors">
+              {% for key, value in form.errors.items %}
+              <strong>{{ value }}</strong>
+              {% endfor %}
+          </div>
+    </div>
+  {% endif %}
 
 
   <div class="screen">
