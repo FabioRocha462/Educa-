@@ -25,6 +25,8 @@ class FoodForm(ModelForm):
             'typeCategoria': forms.RadioSelect(attrs={'class': 'form-control', 'type':'radio'}),
         }
 
+
+
 class CleaningForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CleaningForm, self).__init__(*args, **kwargs)

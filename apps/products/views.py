@@ -61,6 +61,33 @@ class FoodDeleteView(GroupRequiredMixin,LoginRequiredMixin, DeleteView):
         messages.success(self.request, "The task was deleted successfully.")
         return super(FoodDeleteView,self).form_valid(form)
 
+class FoodDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+
+    group_required = u"fooddivider"
+    model = Food
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    context_object_name = 'food'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if "quantity" in self.request.GET:
+            quantity = self.request.GET["quantity"]
+            quantity = float(quantity)
+            food = Food.objects.get(uuid = self.kwargs.get("uuid"))
+            if food.quantity < quantity:
+                messages.error(self.request, "A quantidade repassada é maior que a quantidade do produto. :(")
+                context['food'] = food
+                return context
+            else:
+                food.quantity = food.quantity - quantity
+                food.save()
+                messages.success(self.request,"Atualizado com sucesso :)")
+                context['food'] = food
+                return context
+
+        else:
+            return context    
+
 #views of cleaning
 
 class CleaningCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
@@ -110,6 +137,26 @@ class CleaningDeleteView(GroupRequiredMixin,LoginRequiredMixin, DeleteView):
     def form_valid(self, form):
         messages.success(self.request, "The task was deleted successfully.")
         return super(CleaningDeleteView,self).form_valid(form)
+
+class CleaningDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
+    group_required = u"fooddivider"
+    model = Cleaning
+    slug_url_kwarg = 'uuid'
+    slug_field = 'uuid'
+    context_object_name = 'cleaning'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if "quantity" in self.request.GET:
+            quantity = self.request.GET["quantity"]
+            cleaning = Cleaning.objects.get(uuid = self.kwargs.get("uuid"))
+            if cleaning.quantity < quantity:
+                messages.error(self.request, "A quantidade repassada é maior que a quantidade do produto.")
+                context['cleaning'] = cleaning
+            else:
+                cleaning.quantity = cleaning.quantity - quantity
+                cleaning.save()
+                messages.success(self.request,"Atualizado com sucesso")
+                context['cleaning'] = cleaning
 
 #Request Food
 class RequestFoodCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):

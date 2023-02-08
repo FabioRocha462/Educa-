@@ -1,0 +1,62 @@
+{% extends 'layouts/base.html '%}
+{% load crispy_forms_tags %}
+{% block title %} Detail Cleaning {% endblock %}
+{% block content %}
+<div style="margin:50px">
+    <section class="section">
+        <div class="section-body">
+            <h2 class="section-title">Dados do Produto de Limpeza</h2>
+            <p class="section-lead">
+                Atualize a quantidade do Produto {{cleaning.name}}:
+            </p>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Dados do Produto de Limpeza {{cleaning.name}}</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nome</label>
+                                <div class="form-check-label">{{ cleaning.name }}</div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Quantidade</label>
+                                <div class="form-check-label">{{ cleaning.quantity }}</div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                                <div class="col-sm-12 col-md-7">
+                                    <div class="center">
+                                        {% if messages  %}
+                                            <div class="alert alert-success alert-dismissible" role="alert">
+                                                <div id="form_errors">
+                                                    {% for  message in messages %}
+                                                    <strong>{{ message }}</strong>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="center">
+                                        <h4>Atualize a Quantidade</h4>
+                                    </div>
+                                    <form method="get">
+                                        <div class="mb-3">
+                                            Quantidade Enviada
+                                            <input type="number" name="quantity" class="form-control">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
