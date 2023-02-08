@@ -151,10 +151,12 @@ class CleaningDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
             cleaning = Cleaning.objects.get(uuid = self.kwargs.get("uuid"))
             if cleaning.quantity < quantity:
                 messages.error(self.request, "A quantidade repassada é maior que a quantidade do produto.")
+                context['cleaning'] = cleaning
             else:
                 cleaning.quantity = cleaning.quantity - quantity
                 cleaning.save()
                 messages.success(self.request,"Atualizado com sucesso")
+                context['cleaning'] = cleaning
 
 #Request Food
 class RequestFoodCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):

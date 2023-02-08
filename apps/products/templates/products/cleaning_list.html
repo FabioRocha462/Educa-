@@ -61,8 +61,8 @@
               </tr>
               {% for cleaning in object_list %}
               <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ cleaning.name }}</td>
+                <td><a class = "btn btn-success" href="#">{{ forloop.counter }}</a></td>
+                <td><a class = "btn btn-success" href="">{{ cleaning.name }}</a></td>
                 <td>{{ cleaning.quantity }}</td>
                 {% if user.typeUser == "fooddivider" %}
                   <td class="col-md-2 center-block text-center">
