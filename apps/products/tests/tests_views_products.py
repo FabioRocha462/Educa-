@@ -1,4 +1,4 @@
-from EducaPlus.tests import test_base
+from EducaPlus.tests import test_base,factories
 from django.urls import reverse_lazy
 import datetime
 class Test_Views_Products(test_base.Base_test_core):
@@ -145,3 +145,5 @@ class Test_Views_Products(test_base.Base_test_core):
         cleaning = self.create_cleaning()
         response = self.client.post(reverse_lazy("products:request_cleaning_table",kwargs={"uuid_request":request_cleaning.uuid,"uuid_cleaning":cleaning.uuid}),{"quantity":10},follow=True)
         assert response.status_code == 200
+
+    

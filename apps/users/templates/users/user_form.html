@@ -2,6 +2,20 @@
 {% load crispy_forms_tags %}
 {% block title %} Update User {% endblock %}
 {% block content %}
+<div style="margin: 30px;"class="center">
+    <form action="/users/status_user/{{user.uuid}}/" method = "get">
+        <div class="form-check form-switch">
+            {% if userobj.is_active == False %}
+              <input class="form-check-input" name="check" type="checkbox" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Desativar/Ativar</label>
+            {% else %}
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+              <label class="form-check-label" for="flexSwitchCheckChecked">Desativar/Ativar</label>
+            {% endif %}
+          <button class="btn btn-danger">Enviar</button>
+        </div>
+    </form>
+</div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-3"></div>
