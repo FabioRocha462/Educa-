@@ -9,6 +9,6 @@
         "-s",
         "./apps",
         "-p",
-        "*test.py"
+        "*test*.py"
     ]
 }
