@@ -36,17 +36,17 @@
                       <li class="nav-link text-white">
                         <div class="services">
                           <a href=""  class="nav-link text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
+                            <svg id="alimentos"xmlns="http://www.w3.org/2000/svg" width="32" height="32"fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
                               <path d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5zm0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6z" />
                             </svg>
                             Alimentos
                           </a>
-                          <ul class="dropdown">
-                          {% if user.typeUser != "asg" and user.typeUser != "nutricionist"  %}
-                              <li id="alimentos2"><a style="color:white;" class="dropdown-item" href="/products/listfood/">Alimentos</a></li>
+                          <ul  id="drop" class="dropdown">
+                            {% if user.typeUser != "asg" and user.typeUser != "nutricionist"  %}
+                              <li><a style="color:white;" class="dropdown-item" href="/products/listfood/" >Alimentos</a></li>
                             {% endif %}
                             {% if user.typeUser != "fooddivider" %}
-                            <li id="alimentos3"><a style="color:white;" class="dropdown-item" href="/products/requestfoodlist/">Pedir Alimentos</a></li>
+                              <li id="alimentos3"><a style="color:white;" class="dropdown-item" href="/products/requestfoodlist/">Pedir Alimentos</a></li>
                             {% endif%}
                           </ul>
                         </div>
