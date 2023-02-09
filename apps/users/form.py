@@ -28,6 +28,10 @@ class UpdateForm(forms.ModelForm):
             "email",
             "image",
         ]
+        def __init__(self, *args, **kwargs):
+            super(UpdateForm, self).__init__(*args, **kwargs)
+            for field_name, field in self.fields.items():
+                field.widget.attrs['class'] = 'form-control'
 
 class UpdateTypeUser(forms.ModelForm):
 
@@ -36,3 +40,8 @@ class UpdateTypeUser(forms.ModelForm):
         fields = [
             "typeUser",
         ]
+        
+        def __init__(self, *args, **kwargs):
+            super(UpdateTypeUser, self).__init__(*args, **kwargs)
+            for field_name, field in self.fields.items():
+                field.widget.attrs['class'] = 'form-control'

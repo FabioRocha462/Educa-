@@ -22,7 +22,6 @@ class FoodForm(ModelForm):
 
         widgets = {
             'validity': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'typeCategoria': forms.RadioSelect(attrs={'class': 'form-control', 'type':'radio'}),
         }
 
 
@@ -55,6 +54,7 @@ class RequestFoodForm(ModelForm):
         fields = [
             'name',
         ]
+        
 
 
 class RequestCleaningForm(ModelForm):
@@ -99,5 +99,4 @@ class FoodFormUpdate(ModelForm):
 
     widgets = {
             'validity': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'typeCategoria': forms.RadioSelect(attrs={'class': 'form-control', 'type':'radio'}),
         }

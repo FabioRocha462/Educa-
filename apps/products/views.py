@@ -241,7 +241,7 @@ class RequestCleaningCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateVie
         return super(RequestCleaningCreateView,self).form_valid(form)
 
 class RequestCleadingListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
-    group_required = u"asg"
+    group_required = [u"asg", u"secretary"]
     model = Request_Cleaning
     context_object_name = 'request_cleaning_list'
     def get_queryset(self):

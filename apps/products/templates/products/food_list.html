@@ -64,7 +64,7 @@
                 {% for Food in object_list %}
                 <tr>
                   <td><a class="btn btn-success" href="#">{{ forloop.counter }}</a></td>
-                  <td><a class="btn btn-success" href="/products/detailfood/{{Food.uuid}}/">{{ Food.name }}</a></td>
+                  <td><a id="food_detail" class="btn btn-success" href="/products/detailfood/{{Food.uuid}}/">{{ Food.name }}</a></td>
                   <td>{{ Food.validity }}</td>
                   <td>{{ Food.quantity }}</td>
                   {% if user.typeUser == 'fooddivider' %}
