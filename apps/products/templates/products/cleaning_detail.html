@@ -39,16 +39,20 @@
                                             </div>
                                         {% endif %}
                                     </div>
-                                    <div class="center">
-                                        <h4>Atualize a Quantidade</h4>
-                                    </div>
-                                    <form method="get">
-                                        <div class="mb-3">
-                                            Quantidade Enviada
-                                            <input type="number" name="quantity" class="form-control">
+                                    {% if user.typeUser == "fooddivider" %}
+                                        <div class="center">
+                                            <h4>Atualize a Quantidade</h4>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </form>
+                                        <form method="get">
+                                            <div class="mb-3">
+                                                Quantidade Enviada
+                                                <input type="number" name="quantity" class="form-control">
+                                            </div>
+                                            <div class="center">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

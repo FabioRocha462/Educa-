@@ -83,6 +83,9 @@
     </div>
     <hr>
     {% if user.typeUser == "secretary" or user.typeUser == "coordenator" %}
+      <div class="center">
+        <h3>Eventos aguardando aprovação</h3>
+      </div>
       <div class="table-responsive">
         <table class="table table-bordered table-md">
             <tr>
@@ -104,7 +107,61 @@
             </tr>   
           {% endfor %}
         </table>
-        
+      </div>
+    {% endif %}
+    {% if user.typeUser == "fooddivider" %}
+      <div class="center">
+        <h3>Pedido de Alimentos por enviar</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered table-md">
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th class="col-md-2 center-block">Aprovar</th>
+          </tr>
+          {% for reqfood in request_food %}
+            <tr>
+               <td><a class="btn btn-success" href="">{{ forloop.counter }}</a></td>
+               <td><a class="btn btn-success"   href="/products/requestfooddetail/{{reqfood.uuid}}/">{{reqfood.name}}</a></td>
+               <td>{{reqfood.created_at}}</td>
+               <td>
+                  <a class="btn btn-warning" href="#">Por Enviar</a>
+               </td>
+               <td class="col-md-2 center-block text-center" >
+                <a class="btn btn-primary" href="/products/request_food_confirm/{{reqfood.uuid}}/">Confirmar</a>
+              </td>
+            </tr>   
+          {% endfor %}
+        </table>
+        <div class="center">
+          <h3>Pedido de Limpeza por enviar</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-md">
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th class="col-md-2 center-block">Aprovar</th>
+            </tr>
+            {% for reqcleaning in request_cleaning %}
+              <tr>
+                 <td><a class="btn btn-success" href="">{{ forloop.counter }}</a></td>
+                 <td><a class="btn btn-success"   href="/products/requestcleaningdetail/{{reqclening.uuid}}/">{{reqfood.name}}</a></td>
+                 <td>{{reqcleaning.created_at}}</td>
+                 <td>
+                    <a class="btn btn-warning" href="#">Por Enviar</a>
+                 </td>
+                 <td class="col-md-2 center-block text-center" >
+                  <a class="btn btn-primary" href="/products/request_cleaning_confirm/{{reqcleaning.uuid}}/">Confirmar</a>
+                </td>
+              </tr>   
+            {% endfor %}
+          </table>
       </div>
     {% endif %}
 </div>

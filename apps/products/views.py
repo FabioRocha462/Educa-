@@ -148,6 +148,7 @@ class CleaningDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         if "quantity" in self.request.GET:
             quantity = self.request.GET["quantity"]
+            quantity = float(quantity)
             cleaning = Cleaning.objects.get(uuid = self.kwargs.get("uuid"))
             if cleaning.quantity < quantity:
                 messages.error(self.request, "A quantidade repassada é maior que a quantidade do produto.")
@@ -157,6 +158,7 @@ class CleaningDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
                 cleaning.save()
                 messages.success(self.request,"Atualizado com sucesso")
                 context['cleaning'] = cleaning
+        return context
 
 #Request Food
 class RequestFoodCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
@@ -182,7 +184,7 @@ class RequestFoodListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
     paginate_by = 10
 
 class RequestFoodDetailsView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
-    group_required = u"asg"
+    group_required = [u"asg",u"fooddivider"]
     model = Request_Food
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -213,6 +215,16 @@ def request_food(request,uuid_request,uuid_food):
         request_food_table.save()
 
         return redirect(f"/products/requestfooddetail/{uuid_request}/")
+    return redirect("/")
+
+@login_required
+def confirm_request_food(request,uuid):
+    if request.method == 'GET':
+
+        request_food = Request_Food.objects.get(uuid = uuid)
+        request_food.status_activate = True
+        request_food.save()
+        return redirect(f"/users/details/{request.user.uuid}/")
     return redirect("/")
 
 # Request Cleaning
@@ -266,4 +278,14 @@ def request_cleaning(request,uuid_request,uuid_cleaning):
         request_cleaning_table.save()
 
         return redirect(f"/products/requestcleaningdetail/{uuid_request}/")
+    return redirect("/")
+
+@login_required
+def confirm_request_cleaning(request,uuid):
+    if request.method == 'GET':
+
+        request_cleaning = Request_Cleaning.objects.get(uuid = uuid)
+        request_cleaning.status_activate = True
+        request_cleaning.save()
+        return redirect(f"/users/details/{request.user.uuid}/")
     return redirect("/")

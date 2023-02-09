@@ -16,6 +16,7 @@ from . models import User
 from apps.documents.models import Memorando,Official,Requeriment
 from apps.events.models import Event
 from . filters import UserFilter
+from apps.products.models import Request_Food, Request_Cleaning
 # Create your views here.
 class Home(LoginRequiredMixin, TemplateView):
     template_name = "users/dashboard.html"
@@ -79,6 +80,8 @@ class DetailPerfil(LoginRequiredMixin,DetailView):
         context['officials'] = Official.objects.filter(user = self.request.user).count()
         context['requeriments'] = Requeriment.objects.filter(user = self.request.user).count()
         context['events'] = Event.objects.filter(status_activated = False)
+        context['request_food'] = Request_Food.objects.filter(status_activate = False)
+        context['request_cleaning'] = Request_Cleaning.objects.filter(user = self.request.user)
         return context
     
 
