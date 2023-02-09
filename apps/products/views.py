@@ -63,7 +63,7 @@ class FoodDeleteView(GroupRequiredMixin,LoginRequiredMixin, DeleteView):
 
 class FoodDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
 
-    group_required = u"fooddivider"
+    group_required = [u"fooddivider",u"nutricionist",u"secretary"]
     model = Food
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'
@@ -109,7 +109,7 @@ class CleaningListView(GroupRequiredMixin, LoginRequiredMixin, ListView):
     paginate_by = 10
     filterset = CleaningFilter
     def get_queryset(self):
-        queryset = super().get_queryset().filter(user=self.request.user)
+        queryset = super().get_queryset().all().order_by("name")
         self.filterset = self.filterset(self.request.GET, queryset=queryset)
         return self.filterset.qs
 
@@ -139,7 +139,7 @@ class CleaningDeleteView(GroupRequiredMixin,LoginRequiredMixin, DeleteView):
         return super(CleaningDeleteView,self).form_valid(form)
 
 class CleaningDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
-    group_required = u"fooddivider"
+    group_required = [u"fooddivider",u"nutricionist",u"secretary"]
     model = Cleaning
     slug_url_kwarg = 'uuid'
     slug_field = 'uuid'

@@ -47,7 +47,7 @@ class FunctionalTestsProducts(TestCase):
         wait = WebDriverWait(browser, 5)
         username = browser.find_element(By.NAME,"username")
         username.clear()
-        username.send_keys("sec1@gmail.com")
+        username.send_keys("sec@gmail.com")
         password = browser.find_element(By.NAME, "password")
         password.send_keys("sec12345.")
         password.send_keys(Keys.RETURN)

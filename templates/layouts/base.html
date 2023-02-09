@@ -42,7 +42,7 @@
                             Alimentos
                           </a>
                           <ul class="dropdown">
-                          {% if user.typeUser != "asg" and user.typeUser != "nutricionist"  %}
+                          {% if user.typeUser != "asg" %}
                               <li><a id="alimentos2" style="color:white;" class="dropdown-item" href="/products/listfood/">Alimentos</a></li>
                             {% endif %}
                             {% if user.typeUser != "fooddivider" %}
@@ -61,6 +61,8 @@
                           <ul class="dropdown">
                             {% if user.typeUser != "asg" and user.typeUser != "nutricionist"  %}
                               <li><a id="limpeza1" style="color:white;" class="dropdown-item" href="/products/listcleaning/">Limpeza</a></li>
+                            {% if user.typeUser != "asg" %}
+                              <li><a style="color:white;" class="dropdown-item" href="/products/listcleaning/">Limpeza</a></li>
                             {% endif %}
                             {% if user.typeUser != "fooddivider" %}
                             <li><a id="limpeza2" style="color:white;" class="dropdown-item" href="/products/requestcleaninglist/">Pedir Limpeza</a></li>
