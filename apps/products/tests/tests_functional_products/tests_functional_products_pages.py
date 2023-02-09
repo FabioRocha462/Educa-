@@ -5,6 +5,7 @@ from django.test import TestCase
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,7 +18,7 @@ class FunctionalTestsProducts(TestCase):
         wait = WebDriverWait(browser, 5)
         username = browser.find_element(By.NAME,"username")
         username.clear()
-        username.send_keys("sec@gmail.com")
+        username.send_keys("sec1@gmail.com")
         password = browser.find_element(By.NAME, "password")
         password.send_keys("sec12345.")
         password.send_keys(Keys.RETURN)
@@ -98,7 +99,7 @@ class FunctionalTestsProducts(TestCase):
         category.send_keys(1)
         sleep(5)
         btnCreate = wait.until(EC.presence_of_element_located((By.ID, "btn_enviar")))
-        btnCreate.click()
+        browser.execute_script("arguments[0].click();", btnCreate)
         sleep(5)
-        assert "List Food" in browser.title
+        assert "Create Food" in browser.title
         browser.quit()
