@@ -61,6 +61,7 @@
                             <ul class="dropdown">
                               {% if user.typeUser != "asg" and user.typeUser != "nutricionist"  %}
                                 <li><a id="limpeza1" style="color:white;" class="dropdown-item" href="/products/listcleaning/">Limpeza</a></li>
+                              {% endif %}
                               {% if user.typeUser != "asg" %}
                                 <li><a style="color:white;" class="dropdown-item" href="/products/listcleaning/">Limpeza</a></li>
                               {% endif %}
