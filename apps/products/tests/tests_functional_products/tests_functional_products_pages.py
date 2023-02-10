@@ -10,8 +10,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.test import LiveServerTestCase
 
-class FunctionalTestsProducts(TestCase):
+class FunctionalTestsProducts(TestCase, LiveServerTestCase):
     
     #test functional food pages
     # ----------------------------------------------------------------

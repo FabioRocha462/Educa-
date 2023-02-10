@@ -131,10 +131,10 @@
             <li><a href="/"><i class="fa-solid fa-house"></i>&nbsp Home</a></li>
             {% if user.is_authenticated == False %}
             <li class="services">
-              <a href="/"><i class="fa-solid fa-person -walking-arrow-right" style="margin-left:5px;"></i>&nbsp Log</a>
+              <a id="log"><i class="fa-solid fa-person -walking-arrow-right" style="margin-left:5px;"></i>&nbsp Log</a>
               <ul class="dropdown">
                 <li><a href="/users/login/"><i class="fa-solid fa-right-to-bracket"></i>&nbsp Login </a></li>
-                <li><a href="/users/register/"><i class="fa-regular fa-id-card"></i>&nbsp Register</a></li>
+                <li><a id="register" href="/users/register/"><i class="fa-regular fa-id-card"></i>&nbsp Register</a></li>
               </ul>
             </li>
             {% endif %}
