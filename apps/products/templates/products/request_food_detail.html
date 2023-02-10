@@ -2,10 +2,11 @@
 {% load crispy_forms_tags %}
 {% block title %} Detail Request Food {% endblock %}
 {% block content %}
-{% for obj in list_food_request_table %}
-<a class="btn btn-success">{{obj.food}} {{obj.quantity}}</a>
+<br>
+  {% for obj in list_food_request_table %}
+    <a class="btn btn-success">{{obj.food}} {{obj.quantity}}</a>
+  {% endfor %}
 
-{% endfor %}
 <form action="" method="get">
   <div class="row">
     <div class="col-12">

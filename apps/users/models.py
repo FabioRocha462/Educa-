@@ -8,7 +8,7 @@ class User(AbstractUser):
         ('asg','Asg'),
         ('coordinator','Coordinator'),
         ('nutricionist','Nutricionist'),
-        ('food_divider','Food Divider'),
+        ('fooddivider','Food Divider'),
     )
 
     uuid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4)
