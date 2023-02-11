@@ -1,18 +1,15 @@
 import os
 import time
 from time import sleep
-from django.test import TestCase
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.actions.action_builder import ActionBuilder
+from django.test import TestCase
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.test import LiveServerTestCase
 from utils.browser import make_chrome_browser
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 class FunctionalTestsProducts(TestCase, StaticLiveServerTestCase):
     
@@ -29,7 +26,7 @@ class FunctionalTestsProducts(TestCase, StaticLiveServerTestCase):
         sleep(1)
         log = browser.find_element(By.ID, 'log')
         log.click()
-        sleep(1)
+        sleep(2)
         register = browser.find_element(By.ID, 'register')
         register.click()
         username = browser.find_element(By.NAME, "username")
@@ -90,7 +87,7 @@ class FunctionalTestsProducts(TestCase, StaticLiveServerTestCase):
         quantity.send_keys(3)
         sleep(1)
         submit = wait.until(EC.presence_of_element_located((By.ID, 'btn-submit')))
-        submit.click()
+        browser.execute_script("arguments[0].click();", submit)
         assert "Detail Food" in browser.title
         sleep(3)
         browser.quit()
@@ -209,6 +206,7 @@ class FunctionalTestsProducts(TestCase, StaticLiveServerTestCase):
         newQTDD = browser.find_element(By.NAME, "quantity")
         newQTDD.send_keys(4)
         btnSubmit = browser.find_element(By.ID, "btnSubmit")
+        btnSubmit.click()
         assert "Detail Cleaning" in browser.title
         sleep(1)
         browser.quit()
@@ -232,7 +230,7 @@ class FunctionalTestsProducts(TestCase, StaticLiveServerTestCase):
         sleep(2)
         typeUser = wait.until(EC.presence_of_element_located((By.XPATH, '//select[@class="form-control select"]')))
         select = Select(typeUser)
-        select.select_by_value('secretary')
+        select.select_by_value('asg')
         sleep(1)
         password1 = browser.find_element(By.NAME, "password1")
         password1.send_keys("sel12345.")
@@ -257,6 +255,10 @@ class FunctionalTestsProducts(TestCase, StaticLiveServerTestCase):
         alm1.click()
         RQTcleaning = browser.find_element(By.ID, "request_cleaning")
         RQTcleaning.click()
-        assert "Dashboard" in browser.title
+        input = browser.find_element(By.NAME, "name")
+        input.send_keys('Desinfetante')
+        btnRQTcleaning = browser.find_element(By.ID, "btnRQTcleaning")
+        btnRQTcleaning.click()
+        assert "List request" in browser.title
         sleep(1)
         browser.quit()
