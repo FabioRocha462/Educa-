@@ -21,7 +21,7 @@ class EventForm(ModelForm):
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'school': forms.RadioSelect(attrs={'class': 'form-control', 'type':'radio'}),
+            
         }
 
 class FoodEventForm(ModelForm):
