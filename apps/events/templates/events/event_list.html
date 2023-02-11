@@ -36,7 +36,7 @@
             <h4>Dados dos Eventos</h4>
           </div>
 
-          <a style="margin-bottom: 20px;" class="btn btn-primary" href="/events/eventscreate/">
+          <a id="btn_addEvent" style="margin-bottom: 20px;" class="btn btn-primary" href="/events/eventscreate/">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-circle"
               viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -55,11 +55,11 @@
               {% for event in object_list %}
               <tr>
                 <td>{{ forloop.counter }}</td>
-                <td><a href="/events/eventsdetail/{{event.uuid}}/" class="btn btn-success">{{ event.name }}</a></td>
+                <td><a id="btn_detail_event" href="/events/eventsdetail/{{event.uuid}}/" class="btn btn-success">{{ event.name }}</a></td>
                 <td>{{event.date}}</td>
                 <td class="col-md-2 center-block text-center">
-                  <a href="/events/eventsupdate/{{event.uuid}}/" class="btn btn-primary">Editar</a>
-                  <a href="/events/eventsdelete/{{event.uuid}}/" class="btn btn-danger">Remover</a>
+                  <a id="btn_edit_event" href="/events/eventsupdate/{{event.uuid}}/" class="btn btn-primary">Editar</a>
+                  <a id="btn_delete_event" href="/events/eventsdelete/{{event.uuid}}/" class="btn btn-danger">Remover</a>
                 </td>
               </tr>
               {% endfor %}
