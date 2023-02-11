@@ -5,22 +5,23 @@ import uuid
 
 class Food(models.Model):
     choices = (
-        ("1","INOMPP"),
-        ("2","Frutas e Polpas de Frutas"),
-        ("3","Verduras/Legumes/Raízes"),
-        ("4","INOMPNP"),
-        ("5","Processados"),
-        ("6","Ultraprocessados"),
-        ("7","Ingredientes Culinários")
+        ("INOMPP","INOMPP"),
+        ("Frutas e Polpas de Frutas","Frutas e Polpas de Frutas"),
+        ("Verduras/Legumes/Raízes","Verduras/Legumes/Raízes"),
+        ("INOMPNP","INOMPNP"),
+        ("Processados","Processados"),
+        ("Ultraprocessados","Ultraprocessados"),
+        ("Ingredientes Culinários","Ingredientes Culinários")
     )
     uuid = models.UUIDField(primary_key=True,unique=True, editable=False, default=uuid.uuid4) 
     name = models.CharField(max_length=255)
     quantity = models.FloatField()
     validity = models.DateField()
     typeCategoria = models.CharField(
-        max_length=1,
+        max_length=50,
         choices= choices
     )
+    bidding_value = models.FloatField(null=True, blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now = True)
