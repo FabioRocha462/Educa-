@@ -1,0 +1,143 @@
+{% extends 'layouts/base.html '%}
+{% load crispy_forms_tags %}
+{% block title %} Reports {% endblock %}
+{% block content %}
+<div style="margin:50px">
+    <section class="section">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="center"><h1>Elaborar Relatório</h1></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="section-body">
+            <h2 class="section-title">Escolha o campo que deseja pesquisar</h2>
+            <p class="section-lead">
+                mais informações sobre os sua pesquisa:
+            </p>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Pesquise</h4>
+                        </div>
+                        <br>
+                        <div class="center">
+                            {% if messages  %}
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <div id="form_errors">
+                                        {% for  message in messages %}
+                                        <strong>{{ message }}</strong>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                            <div style="margin:auto;">
+                                <div class="row align-items-start">
+                                    <hr>
+                                    <div class="col">
+                                        <form metohd="get">
+                                            <div class="mb-3">
+                                                <div class="center">
+                                                    <h6 class="btn btn-success">Pesquisar Alimentos perto da data vencimento</h6>
+                                                </div>
+                                                <label for="">Data *</label>
+                                                <input type="date" required class="form-control" name="date">
+                                            </div>
+                                                <div class="center">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                        </form>
+                                    </div>
+                                        <div class="col">
+                                            <form metohd="get">
+                                                <div class="mb-3">
+                                                    <div class="center">
+                                                        <h6 class="btn btn-success">Pesquisar Memorando por período</h6>
+                                                    </div>
+                                                    <label for="">Data inicio *</label>
+                                                    <input type="date" required class="form-control" name="dateInit">
+                                                    <label for="">Data fim *</label>
+                                                    <input type="date" required class="form-control" name="dateEnd">
+                                                    <label for="">Tipo de documento *</label>
+                                                    <select required class="form-control" name="document" id="">
+                                                        <option value="memorando">Memorandos</option>
+                                                        <option value="official">Ofícios</option>
+                                                        <option value="requeriment">Requerimentos</option>
+                                                      </select>
+                                                </div>
+                                                    <div class="center">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                        <div class="col">
+                                            <form metohd="get">
+                                                <div class="mb-3">
+                                                    <div class="center">
+                                                        <h6 class="btn btn-success">Pesquisar Eventos por Escola>
+                                                    </div>
+                                                    <label for="">Escola *</label>
+                                                    <select required class="form-control" name="school" id="">
+                                                        <option value="1">04 de Outubro</option>
+                                                        <option value="2">Pequeno Mário</option>
+                                                        <option value="3">Ariamiro</option>
+                                                        <option value="4">Maria Dália</option>
+                                                        <option value="5">Baixa do Fogo</option>
+                                                        <option value="6">Serra</option>
+                                                        <option value="7">Angicos</option>
+                                                        <option value="8">Jerimum</option>
+                                                        <option value="9">Ema</option>
+                                                        <option value="10">Carnaubinha</option>
+
+                                                      </select>
+                                                </div>
+                                                    <div class="center">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                </div>
+                                <hr>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        {% if foods %}
+                                            {% for food in foods %}
+                                                <ol>
+                                                    <li class="btn btn-warning"><strong>{{food.name}}</strong><span class="btn btn-danger"><strong>{{food.validity}}</strong></span></li>
+                                                </ol>
+                                            {% endfor %} 
+                                        {% endif %}
+                                    </div>
+                                    <div class="col">
+                                        {% if documents %}
+                                            {% for document in documents %}
+                                                <ol>
+                                                    <li class="btn btn-warning"><strong>{{document.title}}</strong><span class="btn btn-danger"><strong>{{document.created_at}}</strong></span></li>
+                                                </ol>
+                                            {% endfor %} 
+                                        {% endif %}
+                                    </div>
+                                    <div class="col">
+                                        {% if events %}
+                                            {% for event in events %}
+                                                <ol>
+                                                    <li class="btn btn-warning"><strong>{{event.name}}</strong><span class="btn btn-danger"><strong>{{event.date}}</strong></span></li>
+                                                </ol>
+                                            {% endfor %} 
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </section>
+</div>
+{% endblock %}
