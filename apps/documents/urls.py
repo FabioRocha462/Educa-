@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path,include
 
 from . views import MemorandoCreateView, MemorandoListView,MemorandoDetailView,OfficialCreateView,OfficialListView,OfficialDetailView,RequerimentCreateView,RequerimentListView,RequerimentDetailView,MemorandoUpdateView,confirming_memorando,OfficialUpdateView,confirming_official,RequerimentUpdateView,confirming_requeriment
-from . views_service import MemorandoService
+from . views_service import MemorandoService, OfficialService, RequerementService
 
 app_name = "documents"
 urlpatterns = [
@@ -26,8 +26,16 @@ urlpatterns = [
     path("requerimentupdate/<uuid:uuid>/",RequerimentUpdateView.as_view(),  name="requeriment_update"),
     path("requerimentconfirmed/<str:uuid>/",confirming_requeriment, name="confirm_requeriment"),
 
-    #Api Documents
+    #Api memorando
 
-    path("api-memorando/",MemorandoService.as_view(), name = "api_memorando"),
+    path("api_memorando/", MemorandoService.as_view({"get":"list"}),name = "api_memorando"),
+    path("api_memorando_detail/<str:pk>/",MemorandoService.as_view({"get":"retrieve"}),name = "api_memorando_detail"),
+    
+    #Api Official
+    path("api_official/", OfficialService.as_view({"get":"list"}),name = "api_official"),
+    path("api_official_detail/<str:pk>/", OfficialService.as_view({"get":"retrieve"}),name = "api_official_detail"),
 
+    #Api Requeriment
+    path("api_requeriment/", RequerementService.as_view({"get":"list"}), name = "api_requeriment"),
+    path("api_requeriment_detail/<str:pk>/", RequerementService.as_view({"get":"retrieve"}),name = "api_requeriment_detail"),
 ]
