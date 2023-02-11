@@ -1,7 +1,9 @@
 from apps.products.models import Food, Cleaning
 from apps.documents.models import Memorando,Requeriment,Official
 from apps.events.models import Event
-
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.db import connection
 import datetime
 from django.contrib import messages
 from braces.views import GroupRequiredMixin
@@ -50,5 +52,11 @@ class ReportView(LoginRequiredMixin, TemplateView):
             context["events"] = events
         return context
 
-        
+@login_required
+def search_with_sql(request,nameFood):
+
+     cursor = connection.cursor()
+     cursor.execute("SELECT * FROM products_food WHERE name = %s", [nameFood])
+     row = cursor.fetchone()
+     return JsonResponse({"row" : row})
 
