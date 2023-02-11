@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . views import MemorandoCreateView, MemorandoListView,MemorandoDetailView,OfficialCreateView,OfficialListView,OfficialDetailView,RequerimentCreateView,RequerimentListView,RequerimentDetailView,MemorandoUpdateView,confirming_memorando,OfficialUpdateView,confirming_official,RequerimentUpdateView,confirming_requeriment
+from . views_service import MemorandoService
 
 app_name = "documents"
 urlpatterns = [
@@ -24,4 +25,9 @@ urlpatterns = [
     path("requerimentdetail/<uuid:uuid>/",RequerimentDetailView.as_view(), name="requeriment_detail"),
     path("requerimentupdate/<uuid:uuid>/",RequerimentUpdateView.as_view(),  name="requeriment_update"),
     path("requerimentconfirmed/<str:uuid>/",confirming_requeriment, name="confirm_requeriment"),
+
+    #Api Documents
+
+    path("api-memorando/",MemorandoService.as_view(), name = "api_memorando"),
+
 ]

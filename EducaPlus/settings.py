@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rolepermissions',
     'crispy_forms',
     'django_filters',
+    'rest_framework',
 
     #allauth
     'allauth',
