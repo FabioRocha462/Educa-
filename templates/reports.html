@@ -135,9 +135,11 @@
                                 </div>
                             </div>
                     </div>
-                    <div class="center">
-                        <img src="{% url 'graphic' %}" alt="Bargraph">
-                    </div>
+                    {% if user.typeUser == "nutricionist" %}
+                        <div class="center">
+                            <img src="{% url 'graphic' %}" alt="Bargraph">
+                        </div>
+                    {% endif %}
                 </div>
             </div>    
         </div>
