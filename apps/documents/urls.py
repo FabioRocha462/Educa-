@@ -1,6 +1,6 @@
 from django.urls import path,include
 
-from . views import MemorandoCreateView, MemorandoListView,MemorandoDetailView,OfficialCreateView,OfficialListView,OfficialDetailView,RequerimentCreateView,RequerimentListView,RequerimentDetailView,MemorandoUpdateView,confirming_memorando,OfficialUpdateView,confirming_official,RequerimentUpdateView,confirming_requeriment,generate_pdf_memorando
+from . views import MemorandoCreateView, MemorandoListView,MemorandoDetailView,OfficialCreateView,OfficialListView,OfficialDetailView,RequerimentCreateView,RequerimentListView,RequerimentDetailView,MemorandoUpdateView,confirming_memorando,OfficialUpdateView,confirming_official,RequerimentUpdateView,confirming_requeriment,generate_pdf_memorando,generate_pdf_official,generate_pdf_requeriment
 from . views_service import MemorandoService, OfficialService, RequerementService
 
 app_name = "documents"
@@ -20,6 +20,7 @@ urlpatterns = [
     path("officialdetail/<uuid:uuid>/",OfficialDetailView.as_view(), name = "official_detail"),
     path("officialupdate/<uuid:uuid>/",OfficialUpdateView.as_view(), name= "official_update"),
     path("officialoconfirmed/<str:uuid>/",confirming_official, name="confirm_official"),
+    path("officialoreport/<str:pk>/",generate_pdf_official,name='generate_pdf_official'),
 
     #requeriment
     path("requerimentcreate/",RequerimentCreateView.as_view(), name = "requeriment_create"),
@@ -27,6 +28,7 @@ urlpatterns = [
     path("requerimentdetail/<uuid:uuid>/",RequerimentDetailView.as_view(), name="requeriment_detail"),
     path("requerimentupdate/<uuid:uuid>/",RequerimentUpdateView.as_view(),  name="requeriment_update"),
     path("requerimentconfirmed/<str:uuid>/",confirming_requeriment, name="confirm_requeriment"),
+    path("requerimentoreport/<str:pk>/",generate_pdf_requeriment,name='generate_pdf_requeriment'),
 
     #Api memorando
 

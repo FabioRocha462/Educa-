@@ -152,6 +152,11 @@ def confirming_official(request,uuid):
         official.save()
         return redirect("/documents/officiallist/")
     return redirect("/")
+
+@login_required
+def generate_pdf_official(request,pk):
+    official = Official.objects.get(pk=pk)
+    return render(request, 'documents/officialreport.html',{'official':official}) 
 # views Requirements
 #----------------------------------------------------------------
 #----------------------------------------------------------------
@@ -213,3 +218,8 @@ def confirming_requeriment(request,uuid):
        requeriment.save()
        return redirect("/documents/requerimentlist/")
     return redirect("/")
+
+@login_required
+def generate_pdf_requeriment(request,pk):
+    requeriment = Requeriment.objects.get(pk=pk)
+    return render(request, 'documents/requerimentreport.html',{'requeriment':requeriment}) 
