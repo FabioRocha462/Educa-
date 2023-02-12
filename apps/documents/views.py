@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy,reverse
@@ -11,7 +11,10 @@ from . models import Memorando,Official, Requeriment
 from . forms import MemorandoForm,OfficialForm,RequerimentsForm
 from . filters import MemorandoFilter,OfficialFilter,RequirementFilter
 import datetime
-
+from django.http import FileResponse
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4, letter
 
 #views memorando
 #----------------------------------------------------------------
@@ -58,6 +61,9 @@ class MemorandoDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
     slug_field = 'uuid'
     context_object_name = 'memorando'
 
+
+
+
 class MemorandoUpdateView(GroupRequiredMixin,LoginRequiredMixin,UpdateView):
 
     group_required = [u"secretary",u"coordinator",u"nutricionist",u"fooddivider"]
@@ -78,8 +84,11 @@ def confirming_memorando(request,uuid):
         memorando.save()
         return redirect("/documents/memorandolist/")
     return redirect("/")
+@login_required
+def generate_pdf_memorando(request,pk):
+    memorando = Memorando.objects.get(pk=pk)
+    return render(request, 'documents/memorandoreport.html',{'memorando':memorando}) 
 
-   
 
 # views Official
 #----------------------------------------------------------------

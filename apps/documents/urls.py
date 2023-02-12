@@ -1,6 +1,6 @@
 from django.urls import path,include
 
-from . views import MemorandoCreateView, MemorandoListView,MemorandoDetailView,OfficialCreateView,OfficialListView,OfficialDetailView,RequerimentCreateView,RequerimentListView,RequerimentDetailView,MemorandoUpdateView,confirming_memorando,OfficialUpdateView,confirming_official,RequerimentUpdateView,confirming_requeriment
+from . views import MemorandoCreateView, MemorandoListView,MemorandoDetailView,OfficialCreateView,OfficialListView,OfficialDetailView,RequerimentCreateView,RequerimentListView,RequerimentDetailView,MemorandoUpdateView,confirming_memorando,OfficialUpdateView,confirming_official,RequerimentUpdateView,confirming_requeriment,generate_pdf_memorando
 from . views_service import MemorandoService, OfficialService, RequerementService
 
 app_name = "documents"
@@ -11,6 +11,8 @@ urlpatterns = [
     path("memorandodetail/<uuid:uuid>/",MemorandoDetailView.as_view(), name="memorando_detail"),
     path("memorandoupdate/<uuid:uuid>/",MemorandoUpdateView.as_view(), name="memorando_update"),
     path("memorandoconfirming/<str:uuid>/", confirming_memorando, name="confirm_memorando"),
+    path('memorandoreport/<str:pk>/', generate_pdf_memorando, name='generate_pdf_memorando'),
+
 
     #official
     path("officialcreate/",OfficialCreateView.as_view(), name = "official_create"),

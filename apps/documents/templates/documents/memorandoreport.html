@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html '%}
+{% load crispy_forms_tags %}
+{% block title %} Print Memorando {% endblock %}
+{% block content %}
+<div style="margin:50px">
+    <section class="section">
+        <div class="section-body">
+            <h2 class="section-title">Leia o Memorando {{memorando.title}}</h2>
+            <p class="section-lead">
+                imprima o memorado
+            </p>
+            <div class="row">
+                <div class="col-12">
+                    <div id="print" class="card">
+                        <div class="card-header">
+                            <h5>MEMORANDO</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Memorando</label>
+                                <div class="form-check-label">{{ memorando.number }}/{{memorando.created_at}}</div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Assunto</label>
+                                <div class="form-check-label"> {{ memorando.title }}</div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Destino</label>
+                                <div class="form-check-label"> {{ memorando.destiny}}</div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"> Destinatário</label>
+                                <div class="col-sm-12 col-md-3">{{ memorando.receiver}}</div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Descrição</label>
+                                <div class="center"><div class="form-check-label">
+                                {{ memorando.description }}
+                                </div></div>
+                            </div>
+                            <br>
+                            <p>JOSÉ DA PENHA/RN {{memorando.created_at}}</p>
+                            <br>
+                            <div class="center">
+                                <p>---------------------------------------------</p>
+                            </div>
+                            <div class="center">
+                                <p>secretário de educação</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <button onclick="report()" class="btn btn-success">Imprimir</button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </section>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"
+        integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs"
+        crossorigin="anonymous"></script>
+        <script>
+            function report(){
+              var mytext = document.getElementById("print").innerHTML;
+              console.log(mytext);
+              var doc = new jsPDF("p","pt","a4")
+              doc.setFontSize(14);
+              doc.fromHTML(mytext);
+              doc.save('report.pdf');
+            }
+          </script>
+{% endblock %}
