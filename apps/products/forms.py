@@ -17,6 +17,7 @@ class FoodForm(ModelForm):
             "name",
             "quantity",
             "validity",
+            "bidding_value",
             "typeCategoria",
         ]
 
@@ -95,6 +96,7 @@ class FoodFormUpdate(ModelForm):
             "quantity",
             "validity",
             "typeCategoria",
+            "bidding_value",
         ]
 
     widgets = {

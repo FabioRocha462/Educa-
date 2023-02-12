@@ -19,7 +19,7 @@ from apps.users import views
 from django.conf import settings
 from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
-from apps.reports.views_report import ReportView,search_with_sql
+from apps.reports.views_report import ReportView,search_with_sql,graphic
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.Home.as_view(), name="dashboard"),
@@ -30,6 +30,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('reports/', ReportView.as_view(), name = "reports"),
     path("searchwithsql/<str:nameFood>", search_with_sql, name = 'searchwith'),
+    path("graphic/", graphic, name = "graphic"),
 
     # YOUR PATTERNS
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

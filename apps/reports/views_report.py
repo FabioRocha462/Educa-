@@ -1,6 +1,8 @@
 from apps.products.models import Food, Cleaning
 from apps.documents.models import Memorando,Requeriment,Official
 from apps.events.models import Event
+
+from django.http import FileResponse
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import connection
@@ -60,3 +62,19 @@ def search_with_sql(request,nameFood):
      row = cursor.fetchone()
      return JsonResponse({"row" : row})
 
+def graphic(request):
+    listCategorys = []
+    sumValue = []
+    cursor = connection.cursor()
+    cursor.execute("SELECT typeCategoria, SUM(bidding_value) FROM products_food GROUP BY typeCategoria")
+    rows = cursor.fetchall()
+    for row in rows:
+        listCategorys.append(row[0])
+        sumValue.append(row[1])
+    fig, ax = plt.subplots()
+    ax.pie(sumValue,labels=listCategorys,autopct='%1.1f%%', shadow=True,startangle=90)
+    ax.axis('equal')
+    plt.savefig("bargraph.png")
+    return FileResponse(open("bargraph.png", "rb"), content_type="image/png")
+    
+    
