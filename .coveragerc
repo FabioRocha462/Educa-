@@ -2,8 +2,11 @@
 omit=
     */manage.py
     */__init__.py
-    */tests/*
-    */migrations/*
-    */core/*
-    */usr/*
-    */utils/*
+    */tests*/
+    */migrations*/
+    */core*/
+    */usr*/
+    */utils*/
+    */forms.py
+    */settings.py
+
