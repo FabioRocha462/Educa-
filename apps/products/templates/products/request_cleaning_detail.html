@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 {% block title %} Detail Request Cleaning {% endblock %}
 {% block content %}
+<br>
 {% for obj in list_cleaning_request_table %}
 <a class="btn btn-success">{{obj.cleaning}} {{obj.quantity}}</a>
-
 {% endfor %}
 <form action="" method="get">
     <div class="row">
@@ -42,7 +42,7 @@
             <td>
             <td>{{ cleaning.name }}</td>
             <td class="col-md-8 center-block text-center">
-                <form action="/products/request_cleaning/{{requestcleaning.uuid}}/{{cleaning.uuid}}" class="row g-3" method="get">
+                <form action="/products/request_cleaning/{{request_cleaning_detail.uuid}}/{{cleaning.uuid}}/" class="row g-3" method="get">
                     <div class="col-auto">
                         <input type="number" required class="form-control" name="quantity" placeholder="quantidade">
                     </div>
