@@ -33,7 +33,7 @@ class EventsListView(GroupRequiredMixin,LoginRequiredMixin, ListView):
     filterset= EventFilter
     paginate_by = 10
     def get_queryset(self):
-        queryset = super().get_queryset().filter(user=self.request.user)
+        queryset = super().get_queryset().all().order_by("name")
         self.filterset = self.filterset(self.request.GET, queryset=queryset)
         return self.filterset.qs
 
@@ -109,5 +109,5 @@ def confirmEvent(request,uuid_event):
         event.status_activated = True
         event.save()
 
-        return redirect(f"/users/usersdetail/{request.user.uuid}/")
+        return redirect(f"/users/details/{request.user.uuid}/")
     return redirect("/")

@@ -35,32 +35,37 @@
           <div class="card-header">
             <h4>Dados dos Eventos</h4>
           </div>
-
-          <a id="btn_addEvent" style="margin-bottom: 20px;" class="btn btn-primary" href="/events/eventscreate/">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-circle"
-              viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-              <path
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-            </svg>
-            <span> Add Evento</span></a>
+          {% if user.typeUser != "fooddivider" %}
+            <a id="btn_addEvent" style="margin-bottom: 20px;" class="btn btn-primary" href="/events/eventscreate/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-plus-circle"
+                viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+              </svg>
+              <span> Add Evento</span></a>
+          {% endif %}
           <div class="table-responsive">
             <table class="table table-bordered table-md">
               <tr>
                 <th>#</th>
                 <th>Nome</th>
                 <th>Data</th>
-                <th class="col-md-2 center-block">Ações</th>
+                {% if user.typeUser != "fooddivider" %}
+                  <th class="col-md-2 center-block">Ações</th>
+                {% endif %}
               </tr>
               {% for event in object_list %}
               <tr>
                 <td>{{ forloop.counter }}</td>
                 <td><a id="btn_detail_event" href="/events/eventsdetail/{{event.uuid}}/" class="btn btn-success">{{ event.name }}</a></td>
                 <td>{{event.date}}</td>
-                <td class="col-md-2 center-block text-center">
-                  <a id="btn_edit_event" href="/events/eventsupdate/{{event.uuid}}/" class="btn btn-primary">Editar</a>
-                  <a id="btn_delete_event" href="/events/eventsdelete/{{event.uuid}}/" class="btn btn-danger">Remover</a>
-                </td>
+                {% if user.typeUser != "fooddivider" %}
+                  <td class="col-md-2 center-block text-center">
+                    <a id="btn_edit_event" href="/events/eventsupdate/{{event.uuid}}/" class="btn btn-primary">Editar</a>
+                    <a id="btn_delete_event" href="/events/eventsdelete/{{event.uuid}}/" class="btn btn-danger">Remover</a>
+                  </td>
+                {% endif %}
               </tr>
               {% endfor %}
             </table>
