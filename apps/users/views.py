@@ -81,7 +81,7 @@ class DetailPerfil(LoginRequiredMixin,DetailView):
         context['requeriments'] = Requeriment.objects.filter(user = self.request.user).count()
         context['events'] = Event.objects.filter(status_activated = False)
         context['request_food'] = Request_Food.objects.filter(status_activate = False)
-        context['request_cleaning'] = Request_Cleaning.objects.filter(user = self.request.user)
+        context['request_cleaning'] = Request_Cleaning.objects.filter(status_activate = False)
         return context
     
 

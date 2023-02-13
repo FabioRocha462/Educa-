@@ -48,10 +48,10 @@
                                     <td>{{ forloop.counter }}</td>
                                     <td><a href="/products/requestcleaningdetail/{{request.uuid}}/" class="btn btn-success">{{ request.name }}</a></td>
                                     <td>{{ request.created_at }}</td>
-                                    {% if request.statuc_activate %}
-                                    <td><a class="btn btn-success"><strong>CONCLUÍDO</strong></a></td>
+                                    {% if request.status_activate %}
+                                        <td><a class="btn btn-success"><strong>CONCLUÍDO</strong></a></td>
                                     {% else %}
-                                    <td><a class="btn btn-warning"><strong>AGUARDANDO</strong></a></td>
+                                        <td><a class="btn btn-warning"><strong>AGUARDANDO</strong></a></td>
                                     {% endif %}
                                 </tr>
                                 {% endfor %}
