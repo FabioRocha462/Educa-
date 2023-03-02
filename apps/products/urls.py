@@ -1,6 +1,6 @@
 from django.urls import path
 app_name = "products"
-from . views import FoodCreateView,FoodListView,FoodUpdateView, FoodDeleteView,CleaningCreateView, CleaningListView,CleaningUpdateView,CleaningDeleteView,RequestFoodCreateView, RequestCleaningCreateView, RequestFoodListView,RequestFoodDetailsView,RequestCleadingListView,request_food,RequestCleaningDetailView,request_cleaning,FoodDetailView,CleaningDetailView,confirm_request_food,confirm_request_cleaning
+from . views import FoodCreateView,FoodListView,FoodUpdateView, FoodDeleteView,CleaningCreateView, CleaningListView,CleaningUpdateView,CleaningDeleteView,RequestFoodCreateView, RequestCleaningCreateView, RequestFoodListView,RequestFoodDetailsView,RequestCleadingListView,request_food,RequestCleaningDetailView,request_cleaning,FoodDetailView,CleaningDetailView,confirm_request_food,confirm_request_cleaning, FoodPrint
 
 urlpatterns = [
     path("createfood/",FoodCreateView.as_view(), name = "food_form"),
@@ -8,6 +8,7 @@ urlpatterns = [
     path("updatefood/<uuid:uuid>/", FoodUpdateView.as_view(), name = "food_update"),
     path("deletefood/<uuid:uuid>/",FoodDeleteView.as_view(), name = "food_delete"),
     path("detailfood/<uuid:uuid>/",FoodDetailView.as_view(), name = "food_detail"),
+    path("foodprint/",FoodPrint.as_view(), name = "food_print"),
     #urls cleaning
     path("createcleaning/",CleaningCreateView.as_view(), name = "cleaning_form"),
     path("listcleaning/",CleaningListView.as_view(), name = "cleaning_list"),

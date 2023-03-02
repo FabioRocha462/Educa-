@@ -88,6 +88,14 @@ class FoodDetailView(GroupRequiredMixin,LoginRequiredMixin, DetailView):
         else:
             return context    
 
+class FoodPrint(GroupRequiredMixin,LoginRequiredMixin,ListView):
+    group_required = u"fooddivider"
+    model  = Food
+    context_object_name = 'foods'
+    def get_queryset(self):
+        queryset = super().get_queryset().all().order_by("name")
+        return queryset
+
 #views of cleaning
 
 class CleaningCreateView(GroupRequiredMixin,LoginRequiredMixin, CreateView):
