@@ -142,10 +142,21 @@ WSGI_APPLICATION = 'EducaPlus.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ddj4e5ifujdv8o',
+        # 'NAME': os.path.join(BASE_DIR, 'mydb'),
+        'USER': 'pxkdfposxargen',
+        'PASSWORD': '5ce1b9f74f4acce98a9d660e22319497fe9292a4ebf6437818c0a69609a0a719',
+        'HOST': 'ec2-3-208-74-199.compute-1.amazonaws.com',
+        'PORT': '5432', # 8000 is default
     }
 }
 
