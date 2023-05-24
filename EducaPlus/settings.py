@@ -151,11 +151,11 @@ WSGI_APPLICATION = 'EducaPlus.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ddj4e5ifujdv8o',
+        'NAME': 'd5thhnh0nu3isv',
         # 'NAME': os.path.join(BASE_DIR, 'mydb'),
-        'USER': 'pxkdfposxargen',
-        'PASSWORD': '5ce1b9f74f4acce98a9d660e22319497fe9292a4ebf6437818c0a69609a0a719',
-        'HOST': 'ec2-3-208-74-199.compute-1.amazonaws.com',
+        'USER': 'jlddfistmxxmxr',
+        'PASSWORD': 'e409e2949d4de86db5114b1acf5826ec6b35e48be54d87ff4f8efd3f3f02ef6b',
+        'HOST': 'ec2-52-20-78-241.compute-1.amazonaws.com',
         'PORT': '5432', # 8000 is default
     }
 }
